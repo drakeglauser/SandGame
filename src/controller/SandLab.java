@@ -108,6 +108,11 @@ public class SandLab
 			  grid[random][randomTwoElectricBoogalo +1] = WATER;
 		  }
 	  }
+	  if ( grid[random][randomTwoElectricBoogalo] == SAND && random != 19 && grid[random + 1][randomTwoElectricBoogalo] == WATER)
+	  {
+		  grid[random][randomTwoElectricBoogalo] = WATER;
+		  grid[random +1][randomTwoElectricBoogalo] = SAND;
+	  }
     //Remember, you need to access both row and column to specify a spot in the array
     //The scalar refers to how big the value could be
     //int someRandom = (int) (Math.random() * scalar)
