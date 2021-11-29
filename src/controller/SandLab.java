@@ -9,6 +9,7 @@ public class SandLab
   public static final int EMPTY = 0;
   public static final int METAL = 1;
   public static final int SAND = 2;
+  public static final int WATER = 3;
   
   //do not add any more fields below
   private int[][] grid;
@@ -25,11 +26,12 @@ public class SandLab
     String[] names;
     // Change this value to add more buttons
     //Step 4,6
-    names = new String[3];
+    names = new String[4];
     // Each value needs a name for the button
     names[SAND] = "Sand";
     names[EMPTY] = "Empty";
     names[METAL] = "Metal";
+    names[WATER] = "Water";
     
     //1. Add code to initialize the data member grid with same dimensions
     this.grid = new int [numRows] [numCols];
@@ -60,11 +62,15 @@ public class SandLab
     		}
     		else if (currentTool == EMPTY)
     		{
-    			display.setColor(row, col, Color.WHITE);
+    			display.setColor(row, col, Color.BLACK);
     		}
     		else if (currentTool == SAND)
     		{
-    			display.setColor(row, col, Color.BLUE);
+    			display.setColor(row, col, Color.YELLOW);
+    		}
+    		else if (currentTool == WATER)
+    		{
+    			display.setColor(row, col, Color.CYAN);
     		}
     	}
     }
@@ -75,13 +81,32 @@ public class SandLab
   //causes one random particle in grid to maybe do something.
   public void step()
   {
-	  int random = (int) (Math.random() * 19);
-	  int randomTwoElectricBoogalo = (int) (Math.random()* 19);
+	  int random = (int) (Math.random() * grid.length);
+	  int randomTwoElectricBoogalo = (int) (Math.random()* grid[0].length);
 	  
 	  if ( grid[random][randomTwoElectricBoogalo] == SAND && random != 19 && grid[random + 1][randomTwoElectricBoogalo] == EMPTY)
 	  {
 		  grid[random][randomTwoElectricBoogalo] = EMPTY;
 		  grid[random +1][randomTwoElectricBoogalo] = SAND;
+	  }
+	  int direction = (int) (Math.random() * 3);
+	  if (grid[random][randomTwoElectricBoogalo] == WATER)
+	  {
+		  if (direction ==0 && random != 19 && grid[random +1][randomTwoElectricBoogalo] == EMPTY)
+		  {
+			  grid[random][randomTwoElectricBoogalo] = EMPTY;
+			  grid[random +1][randomTwoElectricBoogalo]= WATER;
+		  }
+		  if (direction ==1 && randomTwoElectricBoogalo != 0 && grid[random][randomTwoElectricBoogalo -1] == EMPTY)
+		  {
+			  grid[random][randomTwoElectricBoogalo] = EMPTY;
+			  grid[random][randomTwoElectricBoogalo -1] = WATER;
+		  }
+		  if (direction ==2 && randomTwoElectricBoogalo !=19 && grid[random][randomTwoElectricBoogalo +1] == EMPTY)
+		  {
+			  grid[random][randomTwoElectricBoogalo] = EMPTY;
+			  grid[random][randomTwoElectricBoogalo +1] = WATER;
+		  }
 	  }
     //Remember, you need to access both row and column to specify a spot in the array
     //The scalar refers to how big the value could be
