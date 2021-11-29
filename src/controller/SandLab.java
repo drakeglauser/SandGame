@@ -8,6 +8,7 @@ public class SandLab
   //add constants for particle types here
   public static final int EMPTY = 0;
   public static final int METAL = 1;
+  public static final int SAND = 2;
   
   //do not add any more fields below
   private int[][] grid;
@@ -24,8 +25,9 @@ public class SandLab
     String[] names;
     // Change this value to add more buttons
     //Step 4,6
-    names = new String[2];
+    names = new String[3];
     // Each value needs a name for the button
+    names[SAND] = "Sand";
     names[EMPTY] = "Empty";
     names[METAL] = "Metal";
     
@@ -58,7 +60,11 @@ public class SandLab
     		}
     		else if (currentTool == EMPTY)
     		{
-    			display.setColor(row, col, Color.BLACK);
+    			display.setColor(row, col, Color.WHITE);
+    		}
+    		else if (currentTool == SAND)
+    		{
+    			display.setColor(row, col, Color.BLUE);
     		}
     	}
     }
@@ -69,6 +75,14 @@ public class SandLab
   //causes one random particle in grid to maybe do something.
   public void step()
   {
+	  int random = (int) (Math.random() * 19);
+	  int randomTwoElectricBoogalo = (int) (Math.random()* 19);
+	  
+	  if ( grid[random][randomTwoElectricBoogalo] == SAND && random != 19 && grid[random + 1][randomTwoElectricBoogalo] == EMPTY)
+	  {
+		  grid[random][randomTwoElectricBoogalo] = EMPTY;
+		  grid[random +1][randomTwoElectricBoogalo] = SAND;
+	  }
     //Remember, you need to access both row and column to specify a spot in the array
     //The scalar refers to how big the value could be
     //int someRandom = (int) (Math.random() * scalar)
