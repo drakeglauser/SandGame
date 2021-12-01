@@ -223,8 +223,50 @@ public class SandLab
 	  {
 		  grid[randomCol - (int)(Math.random() * 2)- 1][randomRow - (int)(Math.random() * 2) - 1] = ETERNALFLAME1;
 	  }
-	int eternalTick = (int) (Math.random() * 50);
-	if (eternalTick == 49 && grid[randomCol][randomRow] == ETERNALFLAME1)
+	int eternalDecayingTick = (int) (Math.random() * 25);
+	int eternalDecayingTick2 = (int) (Math.random() * 25);
+	int eternalTick = (int)(Math.random() * 15);
+	if (eternalDecayingTick == 24 && grid[randomCol][randomRow] == ETERNALFLAME1)
+	{
+		grid[randomCol][randomRow] = EMPTY;
+	}
+	if (eternalTick == 14 && grid[randomCol][randomRow] == ETERNALFLAME1)
+	{
+		grid[randomCol - (int)(Math.random() * 2)][randomRow - (int)(Math.random() * 2) - 1] = ETERNALFLAME2;
+	}
+	if (eternalDecayingTick == 24 && grid[randomCol][randomRow] == ETERNALFLAME2 || eternalDecayingTick == 20 && grid[randomCol][randomRow] == ETERNALFLAME2)
+	{
+		grid[randomCol][randomRow] = EMPTY;
+	}
+	if (eternalTick == 13 && grid[randomCol][randomRow] == ETERNALFLAME2)
+	{
+		grid[randomCol - (int)(Math.random() * 2) - 1][randomRow - (int)(Math.random() * 2) - 1] = ETERNALFLAME3;
+	}
+	if (eternalDecayingTick == 24 && grid[randomCol][randomRow] == ETERNALFLAME3 || eternalDecayingTick == 20 && grid[randomCol][randomRow] == ETERNALFLAME3 || eternalDecayingTick == 19 && grid[randomCol][randomRow] == ETERNALFLAME3)
+	{
+		grid[randomCol][randomRow] = EMPTY;
+	}
+	if (eternalTick == 11 && grid[randomCol][randomRow] == ETERNALFLAME3)
+	{
+		grid[randomCol - (int)(Math.random() * 2)][randomRow - (int)(Math.random() * 2)] = ETERNALFLAME4;
+	}
+	if (eternalDecayingTick == 24 && grid[randomCol][randomRow] == ETERNALFLAME4 || eternalDecayingTick == 20 && grid[randomCol][randomRow] == ETERNALFLAME4 || eternalDecayingTick == 19 && grid[randomCol][randomRow] == ETERNALFLAME4 || eternalDecayingTick == 12 && grid[randomCol][randomRow] == ETERNALFLAME4)
+	{
+		grid[randomCol][randomRow] = EMPTY;
+	}
+	if (eternalTick == 10 && grid[randomCol][randomRow] == ETERNALFLAME4)
+	{
+		grid[randomCol - (int)(Math.random() * 2)][randomRow - (int)(Math.random() * 2)] = ETERNALFLAME5;
+	}
+	if (eternalDecayingTick2 == 24 && grid[randomCol][randomRow] == ETERNALFLAME5 || eternalDecayingTick2 == 20 && grid[randomCol][randomRow] == ETERNALFLAME5 || eternalDecayingTick2 == 19 && grid[randomCol][randomRow] == ETERNALFLAME5 || eternalDecayingTick2 == 12 && grid[randomCol][randomRow] == ETERNALFLAME5)
+	{
+		grid[randomCol][randomRow] = EMPTY;
+	}
+	if (eternalTick == 9 && grid[randomCol][randomRow] == ETERNALFLAME5)
+	{
+		grid[randomCol - (int)(Math.random() * 2)][randomRow - (int)(Math.random() * 2)] = ETERNALFLAME6;
+	}
+	if (eternalDecayingTick2 == 24 && grid[randomCol][randomRow] == ETERNALFLAME6 || eternalDecayingTick2 == 20 && grid[randomCol][randomRow] == ETERNALFLAME6 || eternalDecayingTick2 == 19 && grid[randomCol][randomRow] == ETERNALFLAME6 || eternalDecayingTick2 == 12 && grid[randomCol][randomRow] == ETERNALFLAME6)
 	{
 		grid[randomCol][randomRow] = EMPTY;
 	}
