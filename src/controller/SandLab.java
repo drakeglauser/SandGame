@@ -5,13 +5,29 @@ import sand.view.*;
 public class SandLab
 {
   //Step 4,6
+	Color eternalFlame = new Color(0, 8, 117);
+	Color eternalFlame1 = new Color(1, 28, 133);
+	Color eternalFlame2 = new Color(5, 41, 150);
+	Color eternalFlame3 = new Color(7, 59, 179);
+	Color eternalFlame4 = new Color(13, 87, 191);
+	Color eternalFlame5 = new Color(21, 115, 209);
+	Color eternalFlame6 = new Color(41, 173, 255);
   //add constants for particle types here
   public static final int EMPTY = 0;
   public static final int METAL = 1;
   public static final int SAND = 2;
   public static final int WATER = 3;
   public static final int SMOKE = 4;
-  
+  public static final int FIREINTENSE = 5;
+  public static final int ETERNALFLAME = 6;
+  public static final int ETERNALFLAME1 = 9;
+  public static final int ETERNALFLAME2 = 10;
+  public static final int ETERNALFLAME3 = 11;
+  public static final int ETERNALFLAME4 = 12;
+  public static final int ETERNALFLAME5 = 13;
+  public static final int ETERNALFLAME6 = 14;
+    public static final int FIREMED = 7;
+  public static final int FIRELOW = 8;
   //do not add any more fields below
   private int[][] grid;
   private SandDisplay display;
@@ -27,13 +43,17 @@ public class SandLab
     String[] names;
     // Change this value to add more buttons
     //Step 4,6
-    names = new String[5];
+    names = new String[7];
     // Each value needs a name for the button
     names[SAND] = "Sand";
     names[EMPTY] = "Empty";
     names[METAL] = "Metal";
     names[WATER] = "Water";
     names[SMOKE] = "Smoke";
+    names[FIREINTENSE] = "Fire";
+    names[ETERNALFLAME] = "EternalFlame";
+    //names[FIREMED] = "Fire";
+   // names[FIRELOW] = "Fire";
     
     //1. Add code to initialize the data member grid with same dimensions
     this.grid = new int [numRows] [numCols];
@@ -51,8 +71,6 @@ public class SandLab
   //copies each element of grid into the display
   public void updateDisplay()
   {
-      //Step 3
-   //Hint - use a nested for loop
     for (int row = 0; row < grid.length; row++)
     {
     	for (int col = 0; col < grid[0].length; col++)
@@ -78,65 +96,138 @@ public class SandLab
     		{
     			display.setColor(row, col, Color.LIGHT_GRAY);
     		}
+    		else if (currentTool == FIREINTENSE)
+    		{
+    			display.setColor(row, col, Color.RED);
+    		}
+    		else if (currentTool == FIREMED)
+    		{
+    			display.setColor(row, col, Color.ORANGE);
+    		}
+    		else if (currentTool == FIRELOW)
+    		{
+    			display.setColor(row, col, Color.YELLOW);
+    		}
+    		else if (currentTool == ETERNALFLAME)
+    		{
+    			display.setColor(row, col, eternalFlame);
+    		}
+    		else if (currentTool == ETERNALFLAME1)
+    		{
+    			display.setColor(row, col, eternalFlame1);
+    		
+    		}
+    		else if (currentTool == ETERNALFLAME2)
+    		{
+    			display.setColor(row, col, eternalFlame2);
+    		}
+    		else if (currentTool == ETERNALFLAME3)
+    		{
+    			display.setColor(row, col, eternalFlame3);
+    		}
+    		else if (currentTool == ETERNALFLAME4)
+    		{
+    			display.setColor(row, col, eternalFlame4);
+    		}
+    		else if (currentTool == ETERNALFLAME5)
+    		{
+    			display.setColor(row, col, eternalFlame5);
+    		}
+    		else if (currentTool == ETERNALFLAME6)
+    		{
+    			display.setColor(row, col, eternalFlame6);
+    		}
     	}
     }
   }
-
-  //Step 5,7
-  //called repeatedly.
-  //causes one random particle in grid to maybe do something.
   public void step()
   {
-	  int random = (int) (Math.random() * grid.length);
-	  int randomTwoElectricBoogalo = (int) (Math.random()* grid[0].length);
+	  int randomCol = (int) (Math.random() * grid.length);
+	  int randomRow = (int) (Math.random()* grid[0].length);
 	  
-	  if ( grid[random][randomTwoElectricBoogalo] == SAND && random != 199 && grid[random + 1][randomTwoElectricBoogalo] == EMPTY)
+	  if ( grid[randomCol][randomRow] == SAND && randomCol != 99 && grid[randomCol + 1][randomRow] == EMPTY)
 	  {
-		  grid[random][randomTwoElectricBoogalo] = EMPTY;
-		  grid[random +1][randomTwoElectricBoogalo] = SAND;
+		  grid[randomCol][randomRow] = EMPTY;
+		  grid[randomCol +1][randomRow] = SAND;
 	  }
 	  int direction = (int) (Math.random() * 3);
-	  if (grid[random][randomTwoElectricBoogalo] == WATER)
+	  if (grid[randomCol][randomRow] == WATER)
 	  {
-		  if (direction ==0 && random != 199 && grid[random +1][randomTwoElectricBoogalo] == EMPTY)
+		  if (direction ==0 && randomCol != 99 && grid[randomCol +1][randomRow] == EMPTY || direction ==0 && randomCol != 99 && grid[randomCol +1][randomRow] == FIREINTENSE || direction ==0 && randomCol != 99 && grid[randomCol +1][randomRow] == FIREMED || direction ==0 && randomCol != 99 && grid[randomCol +1][randomRow] == FIRELOW)
 		  {
-			  grid[random][randomTwoElectricBoogalo] = EMPTY;
-			  grid[random +1][randomTwoElectricBoogalo]= WATER;
+			  grid[randomCol][randomRow] = EMPTY;
+			  grid[randomCol +1][randomRow]= WATER;
 		  }
-		  if (direction ==1 && randomTwoElectricBoogalo != 0 && grid[random][randomTwoElectricBoogalo -1] == EMPTY)
+		  if (direction ==1 && randomRow != 0 && grid[randomCol][randomRow -1] == EMPTY || direction ==1 && randomRow != 0 && grid[randomCol][randomRow -1] == FIREINTENSE || direction ==1 && randomRow != 0 && grid[randomCol][randomRow -1] == FIREMED || direction ==1 && randomRow != 0 && grid[randomCol][randomRow -1] == FIRELOW)
 		  {
-			  grid[random][randomTwoElectricBoogalo] = EMPTY;
-			  grid[random][randomTwoElectricBoogalo -1] = WATER;
+			  grid[randomCol][randomRow] = EMPTY;
+			  grid[randomCol][randomRow -1] = WATER;
 		  }
-		  if (direction ==2 && randomTwoElectricBoogalo !=199 && grid[random][randomTwoElectricBoogalo +1] == EMPTY)
+		  if (direction ==2 && randomRow !=99 && grid[randomCol][randomRow +1] == EMPTY || direction ==2 && randomRow !=99 && grid[randomCol][randomRow +1] == FIREINTENSE || direction ==2 && randomRow !=99 && grid[randomCol][randomRow +1] == FIREMED || direction ==2 && randomRow !=99 && grid[randomCol][randomRow +1] == FIRELOW)
 		  {
-			  grid[random][randomTwoElectricBoogalo] = EMPTY;
-			  grid[random][randomTwoElectricBoogalo +1] = WATER;
+			  grid[randomCol][randomRow] = EMPTY;
+			  grid[randomCol][randomRow +1] = WATER;
 		  }
 	  }
-	  if ( grid[random][randomTwoElectricBoogalo] == SAND && random != 199 && grid[random + 1][randomTwoElectricBoogalo] == WATER)
+	  if ( grid[randomCol][randomRow] == SAND && randomCol != 99 && grid[randomCol + 1][randomRow] == WATER)
 	  {
-		  grid[random][randomTwoElectricBoogalo] = WATER;
-		  grid[random +1][randomTwoElectricBoogalo] = SAND;
+		  grid[randomCol][randomRow] = WATER;
+		  grid[randomCol +1][randomRow] = SAND;
 	  }
-	  if (grid[random][randomTwoElectricBoogalo] == SMOKE)
+	  if (grid[randomCol][randomRow] == SMOKE)
 	  {
-		  if (direction ==0 && random != 0 && grid[random -1][randomTwoElectricBoogalo] == EMPTY)
+		  if (direction ==0 && randomCol != 0 && grid[randomCol -1][randomRow] == EMPTY)
 		  {
-			  grid[random][randomTwoElectricBoogalo] = EMPTY;
-			  grid[random -1][randomTwoElectricBoogalo]= SMOKE;
+			  grid[randomCol][randomRow] = EMPTY;
+			  grid[randomCol -1][randomRow]= SMOKE;
 		  }
-		  if (direction ==1 && randomTwoElectricBoogalo != 0 && grid[random][randomTwoElectricBoogalo -1] == EMPTY)
+		  if (direction ==1 && randomRow != 0 && grid[randomCol][randomRow -1] == EMPTY)
 		  {
-			  grid[random][randomTwoElectricBoogalo] = EMPTY;
-			  grid[random][randomTwoElectricBoogalo -1] = SMOKE;
+			  grid[randomCol][randomRow] = EMPTY;
+			  grid[randomCol][randomRow -1] = SMOKE;
 		  }
-		  if (direction ==2 && randomTwoElectricBoogalo !=199 && grid[random][randomTwoElectricBoogalo +1] == EMPTY)
+		  if (direction ==2 && randomRow !=99 && grid[randomCol][randomRow +1] == EMPTY)
 		  {
-			  grid[random][randomTwoElectricBoogalo] = EMPTY;
-			  grid[random][randomTwoElectricBoogalo +1] = SMOKE;
+			  grid[randomCol][randomRow] = EMPTY;
+			  grid[randomCol][randomRow +1] = SMOKE;
 		  }
 	  }
+	  int fireTick = (int) (Math.random() * 100);
+	  int fireTickMed = (int) (Math.random() * 100);
+	  int fireTickLast = (int) (Math.random() * 100);
+	  if ( fireTick == 46 &&  grid[randomCol][randomRow] == FIREINTENSE)
+	  {
+		
+		 grid[randomCol][randomRow] = FIREMED;
+	  }
+	  if ( fireTickMed == 25 &&  grid[randomCol][randomRow] == FIREMED)
+	  {
+		 
+		  grid[randomCol][randomRow] = FIRELOW;
+	  }
+	  if (fireTickLast == 72 &&   grid[randomCol][randomRow] == FIRELOW)
+	  {
+		
+		  grid[randomCol][randomRow] = SMOKE;
+	  }
+	  if (fireTickLast == 80 && grid[randomCol][randomRow] == FIRELOW)
+	  {
+		  
+		  grid[randomCol][randomRow] = EMPTY;
+	  }
+	  if ( grid[randomCol][randomRow] == FIREINTENSE && randomCol != 99 && grid[randomCol + 1][randomRow] == WATER )
+	  {
+		
+	  }
+	  if (grid[randomCol][randomRow] == ETERNALFLAME)			 
+	  {
+		  grid[randomCol - (int)(Math.random() * 2)- 1][randomRow - (int)(Math.random() * 2) - 1] = ETERNALFLAME1;
+	  }
+	int eternalTick = (int) (Math.random() * 50);
+	if (eternalTick == 49 && grid[randomCol][randomRow] == ETERNALFLAME1)
+	{
+		grid[randomCol][randomRow] = EMPTY;
+	}
     //Remember, you need to access both row and column to specify a spot in the array
     //The scalar refers to how big the value could be
     //int someRandom = (int) (Math.random() * scalar)
