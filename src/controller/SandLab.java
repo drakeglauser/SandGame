@@ -221,7 +221,7 @@ public class SandLab
 	  }
 	  if (grid[randomCol][randomRow] == ETERNALFLAME)			 
 	  {
-		  grid[randomCol - (int)(Math.random() * 2)- 1][randomRow - (int)(Math.random() * 2) - 1] = ETERNALFLAME1;
+		  grid[randomCol - (int)(Math.random() * 2)- 1][randomRow + (int)(Math.random() * 2) - 1] = ETERNALFLAME1;
 	  }
 	int eternalDecayingTick = (int) (Math.random() * 25);
 	int eternalDecayingTick2 = (int) (Math.random() * 25);
