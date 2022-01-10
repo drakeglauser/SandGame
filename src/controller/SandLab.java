@@ -34,6 +34,16 @@ public class SandLab
 	public static final int ETERNALFLAME6 = 14;
 	public static final int FIREWORKBASE = 7;
 	public static final int LITFIREWORKBASE = 16;
+	public static final int FIREWORKFRAGMENT1 = 17;
+	public static final int FIREWORKFRAGMENT2 = 18;
+	public static final int FIREWORKFRAGMENT3 = 19;
+	public static final int FIREWORKFRAGMENT4 = 20;
+	public static final int FIREWORKFRAGMENT5 = 21;
+	public static final int FIREWORKFRAGMENT6 = 22;
+	public static final int FIREWORKFRAGMENT7 = 23;
+	public static final int FIREWORKFRAGMENT8 = 24;
+	public static final int FIREWORKFRAGMENT9 = 25;
+	public static final int FIREWORKFRAGMENT10 = 26;
 
 	// do not add any more fields below
 	private int[][] grid;
@@ -340,10 +350,15 @@ public class SandLab
 			}
 		}
 		int fireworklaunchtick = (int) (Math.random() * 3);
+		int fireworkBoom = (int) (Math.random() * 100);
 		if (fireworklaunchtick == 2 && grid[randomRow][randomCol] == LITFIREWORKBASE && randomRow != 0)
 		{
 			grid[randomRow][randomCol] = EMPTY;
 			grid[randomRow - 1][randomCol] = LITFIREWORKBASE;
+		}
+		if (fireworkBoom == 1 && grid[randomRow][randomCol] == LITFIREWORKBASE)
+		{
+			
 		}
 		// Remember, you need to access both row and column to specify a spot in the
 		// array
