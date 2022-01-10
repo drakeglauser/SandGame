@@ -332,12 +332,18 @@ public class SandLab
 				grid[randomRow][randomCol] = EMPTY;
 				grid[randomRow][randomCol] = LITFIREWORKBASE;
 			}
-			if (direction == 0 && randomRow != 99 && direction == 0 && randomRow != 99 && grid[randomRow - 1][randomCol] == FIREINTENSE
-					|| direction == 0 && randomRow != 99 && grid[randomRow - 1][randomCol] == FIREMED || direction == 0 && randomRow != 99 && grid[randomRow - 1][randomCol] == FIRELOW)
+			if (direction == 0 && randomRow != 0 && direction == 0 && randomRow != 0 && grid[randomRow - 1][randomCol] == FIREINTENSE
+					|| direction == 0 && randomRow != 0 && grid[randomRow - 1][randomCol] == FIREMED || direction == 0 && randomRow != 0 && grid[randomRow - 1][randomCol] == FIRELOW)
 			{
 				grid[randomRow][randomCol] = EMPTY;
 				grid[randomRow][randomCol] = LITFIREWORKBASE;
 			}
+		}
+		int fireworklaunchtick = (int) (Math.random() * 3);
+		if (fireworklaunchtick == 2 && grid[randomRow][randomCol] == LITFIREWORKBASE && randomRow != 0)
+		{
+			grid[randomRow][randomCol] = EMPTY;
+			grid[randomRow - 1][randomCol] = LITFIREWORKBASE;
 		}
 		// Remember, you need to access both row and column to specify a spot in the
 		// array
