@@ -406,6 +406,7 @@ public class SandLab
 		}
 		int fireworklaunchtick = (int) (Math.random() * 3);
 		int fireworkBoom = (int) (Math.random() * 100);
+		int fireworkExplosion = (int) (Math.random() * 50);
 		if (fireworklaunchtick == 2 && grid[randomRow][randomCol] == LITFIREWORKBASE && randomRow != 0)
 		{
 			grid[randomRow][randomCol] = EMPTY;
@@ -413,16 +414,52 @@ public class SandLab
 		}
 		if (fireworkBoom == 1 && grid[randomRow][randomCol] == LITFIREWORKBASE)
 		{
-			
+			grid[randomRow][randomCol] = FIREWORKEXPLOSIONPIECE;
 		}
+		if (fireworkExplosion == 2 && grid[randomRow][randomCol] == FIREWORKEXPLOSIONPIECE && randomRow != 0 && randomRow != 1 && randomRow != 2)
+		{
+			grid[randomRow][randomCol] = getRandomFirework();
+			grid[randomRow][randomCol - 1] = getRandomFirework();
+			grid[randomRow][randomCol - 2] = getRandomFirework();
+			grid[randomRow][randomCol + 1] = getRandomFirework();
+			grid[randomRow][randomCol + 2] = getRandomFirework();
+			grid[randomRow - 1][randomCol] = getRandomFirework();
+			grid[randomRow - 1][randomCol - 1] = getRandomFirework();
+			grid[randomRow - 1][randomCol - 2] = getRandomFirework();
+			grid[randomRow - 1][randomCol + 1] = getRandomFirework();
+			grid[randomRow - 1][randomCol + 2] = getRandomFirework();
+			grid[randomRow - 2][randomCol] = getRandomFirework();
+			grid[randomRow - 2][randomCol - 1] = getRandomFirework();
+			grid[randomRow - 2][randomCol - 2] = getRandomFirework();
+			grid[randomRow - 2][randomCol + 1] = getRandomFirework();
+			grid[randomRow - 2][randomCol + 2] = getRandomFirework();
+			grid[randomRow + 1][randomCol] = getRandomFirework();
+			grid[randomRow + 1][randomCol - 1] = getRandomFirework();
+			grid[randomRow + 1][randomCol - 2] = getRandomFirework();
+			grid[randomRow + 1][randomCol + 1] = getRandomFirework();
+			grid[randomRow + 1][randomCol + 2] = getRandomFirework();
+			grid[randomRow + 2][randomCol] = getRandomFirework();
+			grid[randomRow + 2][randomCol - 1] = getRandomFirework();
+			grid[randomRow + 2][randomCol - 2] = getRandomFirework();
+			grid[randomRow + 2][randomCol + 1] = getRandomFirework();
+			grid[randomRow + 2][randomCol + 2] = getRandomFirework();
+		}
+		
+		
 		// Remember, you need to access both row and column to specify a spot in the
 		// array
 		// The scalar refers to how big the value could be
 		// int someRandom = (int) (Math.random() * scalar)
 		// remember that you need to watch for the edges of the array
-
+		
 	}
-
+	public int getRandomFirework() {
+		int fireworkRoulete = -1;
+		int []fireworkSelection = {FIREWORKFRAGMENT1, FIREWORKFRAGMENT2, FIREWORKFRAGMENT3, FIREWORKFRAGMENT4, FIREWORKFRAGMENT5, FIREWORKFRAGMENT6, FIREWORKFRAGMENT7, FIREWORKFRAGMENT8, FIREWORKFRAGMENT9, FIREWORKFRAGMENT10, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY};
+		int fireworkRandomizer = (int) (Math.random() * fireworkSelection.length);
+		fireworkRoulete = fireworkSelection[fireworkRandomizer];
+		return fireworkRoulete;
+	}
 	// do not modify this method!
 	public void run()
 	{
