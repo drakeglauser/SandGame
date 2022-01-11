@@ -16,6 +16,16 @@ public class SandLab
 	Color eternalFlame6 = new Color(41, 173, 255);
 	Color fireWorkBase = new Color(69, 51, 4);
 	Color litFireWorkBase = new Color(89, 66, 8);
+	Color FireWorkFragment1 = new Color(255, 69, 56);
+	Color FireWorkFragment2 = new Color(68, 230, 18);
+	Color FireWorkFragment3 = new Color(140, 33, 255);
+	Color FireWorkFragment4 = new Color(0, 255, 255);
+	Color FireWorkFragment5 = new Color(23, 76, 209);
+	Color FireWorkFragment6 = new Color(200, 255, 0);
+	Color FireWorkFragment7 = new Color(232, 154, 9);
+	Color FireWorkFragment8 = new Color(232, 9, 232);
+	Color FireWorkFragment9 = new Color(110, 32, 69);
+	Color FireWorkFragment10 = new Color(255, 255, 255);
 	// add constants for particle types here
 	public static final int EMPTY = 0;
 	public static final int METAL = 1;
@@ -44,6 +54,7 @@ public class SandLab
 	public static final int FIREWORKFRAGMENT8 = 24;
 	public static final int FIREWORKFRAGMENT9 = 25;
 	public static final int FIREWORKFRAGMENT10 = 26;
+	public static final int FIREWORKEXPLOSIONPIECE = 27;
 
 	// do not add any more fields below
 	private int[][] grid;
@@ -162,6 +173,50 @@ public class SandLab
 				else if (currentTool == LITFIREWORKBASE)
 				{
 					display.setColor(row, col, litFireWorkBase);
+				}
+				else if (currentTool == FIREWORKFRAGMENT1)
+				{
+					display.setColor(row,  col, FireWorkFragment1);
+				}
+				else if (currentTool == FIREWORKFRAGMENT2)
+				{
+					display.setColor(row,  col, FireWorkFragment2);
+				}
+				else if (currentTool == FIREWORKFRAGMENT3)
+				{
+					display.setColor(row,  col, FireWorkFragment3);
+				}
+				else if (currentTool == FIREWORKFRAGMENT4)
+				{
+					display.setColor(row,  col, FireWorkFragment4);
+				}
+				else if (currentTool == FIREWORKFRAGMENT5)
+				{
+					display.setColor(row,  col, FireWorkFragment5);
+				}
+				else if (currentTool == FIREWORKFRAGMENT6)
+				{
+					display.setColor(row,  col, FireWorkFragment6);
+				}
+				else if (currentTool == FIREWORKFRAGMENT7)
+				{
+					display.setColor(row,  col, FireWorkFragment7);
+				}
+				else if (currentTool == FIREWORKFRAGMENT8)
+				{
+					display.setColor(row,  col, FireWorkFragment8);
+				}
+				else if (currentTool == FIREWORKFRAGMENT9)
+				{
+					display.setColor(row,  col, FireWorkFragment9);
+				}
+				else if (currentTool == FIREWORKFRAGMENT10)
+				{
+					display.setColor(row,  col, FireWorkFragment10);
+				}
+				else if (currentTool == FIREWORKEXPLOSIONPIECE)
+				{
+					display.setColor(row,  col, FireWorkFragment10);
 				}
 			}
 		}
