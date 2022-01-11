@@ -416,7 +416,7 @@ public class SandLab
 		{
 			grid[randomRow][randomCol] = FIREWORKEXPLOSIONPIECE;
 		}
-		if (fireworkExplosion == 2 && grid[randomRow][randomCol] == FIREWORKEXPLOSIONPIECE && randomRow != 0 && randomRow != 1 && randomRow != 2)
+		if (fireworkExplosion == 2 && grid[randomRow][randomCol] == FIREWORKEXPLOSIONPIECE && randomRow != 0 && randomRow != 1 && randomRow != 2 && randomCol != 0 && randomCol != 1 && randomCol != 2 && randomRow != 97 && randomRow != 98 && randomRow != 99 && randomCol != 97 && randomCol != 98 && randomCol != 99)
 		{
 			grid[randomRow][randomCol] = getRandomFirework();
 			grid[randomRow][randomCol - 1] = getRandomFirework();
