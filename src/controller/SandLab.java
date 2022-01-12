@@ -26,6 +26,7 @@ public class SandLab
 	Color FireWorkFragment8 = new Color(232, 9, 232);
 	Color FireWorkFragment9 = new Color(110, 32, 69);
 	Color FireWorkFragment10 = new Color(255, 255, 255);
+	Color Glass = new Color(214, 214, 214);
 	// add constants for particle types here
 	public static final int EMPTY = 0;
 	public static final int METAL = 1;
@@ -34,15 +35,16 @@ public class SandLab
 	public static final int SMOKE = 4;
 	public static final int FIREINTENSE = 5;
 	public static final int ETERNALFLAME = 6;
+	public static final int FIREWORKBASE = 7;
+	public static final int GLASS = 8;
 	public static final int FIREMED = 15;
-	public static final int FIRELOW = 8;
+	public static final int FIRELOW = 28;
 	public static final int ETERNALFLAME1 = 9;
 	public static final int ETERNALFLAME2 = 10;
 	public static final int ETERNALFLAME3 = 11;
 	public static final int ETERNALFLAME4 = 12;
 	public static final int ETERNALFLAME5 = 13;
 	public static final int ETERNALFLAME6 = 14;
-	public static final int FIREWORKBASE = 7;
 	public static final int LITFIREWORKBASE = 16;
 	public static final int FIREWORKFRAGMENT1 = 17;
 	public static final int FIREWORKFRAGMENT2 = 18;
@@ -71,7 +73,7 @@ public class SandLab
 		String[] names;
 		// Change this value to add more buttons
 		// Step 4,6
-		names = new String[8];
+		names = new String[9];
 		// Each value needs a name for the button
 		names[SAND] = "Sand";
 		names[EMPTY] = "Empty";
@@ -81,6 +83,7 @@ public class SandLab
 		names[FIREINTENSE] = "Fire";
 		names[ETERNALFLAME] = "EternalFlame";
 		names[FIREWORKBASE] = "Firework";
+		names[GLASS] = "Glass";
 		// names[FIREMED] = "Fire";
 		// names[FIRELOW] = "Fire";
 
@@ -218,6 +221,10 @@ public class SandLab
 				{
 					display.setColor(row,  col, FireWorkFragment10);
 				}
+				else if (currentTool == GLASS)
+				{
+					display.setColor(row,  col, Glass);
+				}
 			}
 		}
 	}
@@ -311,6 +318,10 @@ public class SandLab
 			{
 				grid[randomRow - (int) (Math.random() * 2) - 1][randomCol + (int) (Math.random() * 2) - 1] = ETERNALFLAME1;
 			}
+		}
+		if (grid[randomRow][randomCol] == SAND && randomRow != 0 && randomRow != 99 && randomCol != 0 && randomCol != 99 && grid[randomRow - 1][randomCol] == FIREINTENSE || grid[randomRow + 1][randomCol] == FIREINTENSE || grid[randomRow - 1][randomCol - 1] == FIREINTENSE || grid[randomRow - 1][randomCol + 1] == FIREINTENSE || grid[randomRow + 1][randomCol + 1] == FIREINTENSE)
+		{
+			grid[randomRow][randomCol] = GLASS;
 		}
 		int eternalDecayingTick = (int) (Math.random() * 25);
 		int eternalDecayingTick2 = (int) (Math.random() * 25);
