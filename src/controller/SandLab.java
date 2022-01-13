@@ -310,8 +310,26 @@ public class SandLab
 		}
 		if (grid[randomRow][randomCol] == FIREINTENSE && randomRow != 99 && grid[randomRow + 1][randomCol] == WATER)
 		{
-
+				grid[randomRow][randomCol] = WATER;
+				grid[randomRow + 1][randomCol] = EMPTY;
 		}
+		
+		// This is the code for sand turning into glass due to heat
+		if (grid[randomRow][randomCol] == SAND && randomRow < 99 && randomRow > 0 && randomCol > 0 && randomCol < 99 && (grid[randomRow - 1][randomCol] == FIREINTENSE || grid[randomRow + 1][randomCol] == FIREINTENSE || grid[randomRow - 1][randomCol - 1] == FIREINTENSE || grid[randomRow - 1][randomCol + 1] == FIREINTENSE || grid[randomRow + 1][randomCol + 1] == FIREINTENSE))
+		{
+			grid[randomRow][randomCol] = GLASS;
+		}
+		if (grid[randomRow][randomCol] == SAND && randomRow < 99 && randomRow > 0 && randomCol > 0 && randomCol < 99 && (grid[randomRow - 1][randomCol] == FIREMED || grid[randomRow + 1][randomCol] == FIREMED || grid[randomRow - 1][randomCol - 1] == FIREMED || grid[randomRow - 1][randomCol + 1] == FIREMED || grid[randomRow + 1][randomCol + 1] == FIREMED))
+		{
+			grid[randomRow][randomCol] = GLASS;
+		}
+		if (grid[randomRow][randomCol] == SAND && randomRow < 99 && randomRow > 0 && randomCol > 0 && randomCol < 99 && (grid[randomRow - 1][randomCol] == FIRELOW || grid[randomRow + 1][randomCol] == FIRELOW || grid[randomRow - 1][randomCol - 1] == FIREINTENSE || grid[randomRow - 1][randomCol + 1] == FIRELOW || grid[randomRow + 1][randomCol + 1] == FIRELOW))
+		{
+			grid[randomRow][randomCol] = GLASS;
+		}
+		int eternalDecayingTick = (int) (Math.random() * 25);
+		int eternalDecayingTick2 = (int) (Math.random() * 25);
+		int eternalTick = (int) (Math.random() * 15);
 		if (grid[randomRow][randomCol] == ETERNALFLAME && randomRow < grid.length - 2 && randomRow > 2 && randomCol < grid[0].length - 2 && randomCol > 2)
 		{
 			if (randomRow < grid.length - 2 && randomRow != 0 && randomCol < grid[0].length - 2)
@@ -319,13 +337,6 @@ public class SandLab
 				grid[randomRow - (int) (Math.random() * 2) - 1][randomCol + (int) (Math.random() * 2) - 1] = ETERNALFLAME1;
 			}
 		}
-		if (grid[randomRow][randomCol] == SAND && randomRow != 0 && randomRow != 99 && randomCol != 0 && randomCol != 99 && grid[randomRow - 1][randomCol] == FIREINTENSE || grid[randomRow + 1][randomCol] == FIREINTENSE || grid[randomRow - 1][randomCol - 1] == FIREINTENSE || grid[randomRow - 1][randomCol + 1] == FIREINTENSE || grid[randomRow + 1][randomCol + 1] == FIREINTENSE)
-		{
-			grid[randomRow][randomCol] = GLASS;
-		}
-		int eternalDecayingTick = (int) (Math.random() * 25);
-		int eternalDecayingTick2 = (int) (Math.random() * 25);
-		int eternalTick = (int) (Math.random() * 15);
 		if (eternalDecayingTick == 24 && grid[randomRow][randomCol] == ETERNALFLAME1)
 		{
 			grid[randomRow][randomCol] = EMPTY;
@@ -420,7 +431,7 @@ public class SandLab
 		int fireworkBoom = (int) (Math.random() * 100);
 		int fireworkExplosion = (int) (Math.random() * 50);
 		int fireworkFragmentDecayingTick = (int) (Math.random() * 4);
-		if (fireworklaunchtick == 2 && grid[randomRow][randomCol] == LITFIREWORKBASE && randomRow != 0)
+		if (fireworklaunchtick == 2 && grid[randomRow][randomCol] == LITFIREWORKBASE && randomRow != 0 && grid[randomRow - 1][randomCol] == EMPTY)
 		{
 			grid[randomRow][randomCol] = EMPTY;
 			grid[randomRow - 1][randomCol] = LITFIREWORKBASE;
@@ -428,6 +439,10 @@ public class SandLab
 		if (fireworkBoom == 1 && grid[randomRow][randomCol] == LITFIREWORKBASE)
 		{
 			grid[randomRow][randomCol] = FIREWORKEXPLOSIONPIECE;
+		}
+		if (grid[randomRow][randomCol] == LITFIREWORKBASE && randomRow < 3 || randomCol < 3 || randomCol > 96)
+		{
+			grid[randomRow][randomCol] = EMPTY;
 		}
 		if (fireworkExplosion == 2 && grid[randomRow][randomCol] == FIREWORKEXPLOSIONPIECE && randomRow != 0 && randomRow != 1 && randomRow != 2 && randomCol != 0 && randomCol != 1 && randomCol != 2 && randomRow != 97 && randomRow != 98 && randomRow != 99 && randomCol != 97 && randomCol != 98 && randomCol != 99)
 		{
