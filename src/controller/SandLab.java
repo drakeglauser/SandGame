@@ -84,8 +84,7 @@ public class SandLab
 		names[ETERNALFLAME] = "EternalFlame";
 		names[FIREWORKBASE] = "Firework";
 		names[GLASS] = "Glass";
-		// names[FIREMED] = "Fire";
-		// names[FIRELOW] = "Fire";
+	
 
 		// 1. Add code to initialize the data member grid with same dimensions
 		this.grid = new int[numRows][numCols];
@@ -448,10 +447,12 @@ public class SandLab
 		{
 			grid[randomRow][randomCol] = FIREWORKEXPLOSIONPIECE;
 		}
+		// code for the boundrys of the grid
 		if (grid[randomRow][randomCol] == LITFIREWORKBASE && randomRow < 3 || randomCol < 3 || randomCol > 96)
 		{
 			grid[randomRow][randomCol] = EMPTY;
 		}
+		// this is the code that throws out all particals in a random order
 		if (fireworkExplosion == 2 && grid[randomRow][randomCol] == FIREWORKEXPLOSIONPIECE && randomRow != 0 && randomRow != 1 && randomRow != 2 && randomCol != 0 && randomCol != 1 && randomCol != 2 && randomRow != 97 && randomRow != 98 && randomRow != 99 && randomCol != 97 && randomCol != 98 && randomCol != 99)
 		{
 			grid[randomRow][randomCol] = getRandomFirework();
