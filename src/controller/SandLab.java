@@ -399,9 +399,10 @@ public class SandLab
 		{
 			grid[randomRow][randomCol] = EMPTY;
 		}
-		
+		// This is the beginning of the firework physics code
 		if (grid[randomRow][randomCol] == FIREWORKBASE)
 		{
+			// code for lighting the firework
 			if (direction == 0 && randomRow != 99 && direction == 0 && randomRow != 99 && grid[randomRow + 1][randomCol] == FIREINTENSE
 					|| direction == 0 && randomRow != 99 && grid[randomRow + 1][randomCol] == FIREMED || direction == 0 && randomRow != 99 && grid[randomRow + 1][randomCol] == FIRELOW)
 			{
@@ -427,15 +428,22 @@ public class SandLab
 				grid[randomRow][randomCol] = LITFIREWORKBASE;
 			}
 		}
+		// these ints are the randomized ticks that are used to launch the fireworks
+		// randomized launch time when coming in contact to fire
 		int fireworklaunchtick = (int) (Math.random() * 3);
+		// this is the randomized time that the firework becomes stastionary 
 		int fireworkBoom = (int) (Math.random() * 100);
+		// this is the randomized time that causes the firework to explode
 		int fireworkExplosion = (int) (Math.random() * 50);
+		// this is the randomized time that has the colored fragments can remove
 		int fireworkFragmentDecayingTick = (int) (Math.random() * 4);
+		// code for the launching of the firework
 		if (fireworklaunchtick == 2 && grid[randomRow][randomCol] == LITFIREWORKBASE && randomRow != 0 && grid[randomRow - 1][randomCol] == EMPTY)
 		{
 			grid[randomRow][randomCol] = EMPTY;
 			grid[randomRow - 1][randomCol] = LITFIREWORKBASE;
 		}
+		// this is the code for having the firework explode 
 		if (fireworkBoom == 1 && grid[randomRow][randomCol] == LITFIREWORKBASE)
 		{
 			grid[randomRow][randomCol] = FIREWORKEXPLOSIONPIECE;
