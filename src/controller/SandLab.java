@@ -6,7 +6,7 @@ import sand.view.*;
 
 public class SandLab
 {
-	// Step 4,6
+	// adding in colors with RGB values
 	Color eternalFlame = new Color(0, 8, 117);
 	Color eternalFlame1 = new Color(1, 28, 133);
 	Color eternalFlame2 = new Color(5, 41, 150);
@@ -27,6 +27,7 @@ public class SandLab
 	Color FireWorkFragment9 = new Color(110, 32, 69);
 	Color FireWorkFragment10 = new Color(255, 255, 255);
 	Color Glass = new Color(214, 214, 214);
+//	Color Dynamite = new Color();
 	// add constants for particle types here
 	public static final int EMPTY = 0;
 	public static final int METAL = 1;
@@ -37,9 +38,10 @@ public class SandLab
 	public static final int ETERNALFLAME = 6;
 	public static final int FIREWORKBASE = 7;
 	public static final int GLASS = 8;
+	public static final int CLEARALL = 9;
 	public static final int FIREMED = 15;
 	public static final int FIRELOW = 28;
-	public static final int ETERNALFLAME1 = 9;
+	public static final int ETERNALFLAME1 = 29;
 	public static final int ETERNALFLAME2 = 10;
 	public static final int ETERNALFLAME3 = 11;
 	public static final int ETERNALFLAME4 = 12;
@@ -58,7 +60,7 @@ public class SandLab
 	public static final int FIREWORKFRAGMENT10 = 26;
 	public static final int FIREWORKEXPLOSIONPIECE = 27;
 
-	// do not add any more fields below
+	
 	private int[][] grid;
 	private SandDisplay display;
 
@@ -71,10 +73,10 @@ public class SandLab
 	public SandLab(int numRows, int numCols)
 	{
 		String[] names;
-		// Change this value to add more buttons
-		// Step 4,6
-		names = new String[9];
-		// Each value needs a name for the button
+		// number of buttons
+		names = new String[10];
+		// Name of the buttons and what string they are asinged too
+		names[CLEARALL] = "Clear Screen";
 		names[SAND] = "Sand";
 		names[EMPTY] = "Empty";
 		names[METAL] = "Metal";
@@ -86,7 +88,7 @@ public class SandLab
 		names[GLASS] = "Glass";
 	
 
-		// 1. Add code to initialize the data member grid with same dimensions
+		//code to initialize the data member grid with same dimensions
 		this.grid = new int[numRows][numCols];
 
 		display = new SandDisplay("Falling Sand", numRows, numCols, names);
@@ -95,11 +97,10 @@ public class SandLab
 	// called when the user clicks on a location using the given tool
 	private void locationClicked(int row, int col, int tool)
 	{
-		// 2. Assign the values associated with the parameters to the grid
 		grid[row][col] = tool;
 	}
 
-	// copies each element of grid into the display
+	// copys element of grid into the display and asigns a color to it
 	public void updateDisplay()
 	{
 		for (int row = 0; row < grid.length; row++)
@@ -227,7 +228,7 @@ public class SandLab
 			}
 		}
 	}
-
+// physics of the code
 	public void step()
 	{
 		int randomRow = (int) (Math.random() * grid.length);
@@ -240,6 +241,7 @@ public class SandLab
 		}
 		int direction = (int) (Math.random() * 3);
 		int allDirection = (int) (Math.random() * 9);
+		// this is the code for water and its ability to move and remove fire
 		if (grid[randomRow][randomCol] == WATER)
 		{
 			if (direction == 0 && randomRow != 99 && grid[randomRow + 1][randomCol] == EMPTY || direction == 0 && randomRow != 99 && grid[randomRow + 1][randomCol] == FIREINTENSE
@@ -261,6 +263,7 @@ public class SandLab
 				grid[randomRow][randomCol + 1] = WATER;
 			}
 		}
+		// This is used for displacing water 
 		if (grid[randomRow][randomCol] == SAND && randomRow != 99 && grid[randomRow + 1][randomCol] == WATER)
 		{
 			grid[randomRow][randomCol] = WATER;
@@ -284,22 +287,20 @@ public class SandLab
 				grid[randomRow][randomCol + 1] = SMOKE;
 			}
 		}
+		// random math integers that are used to cause fire decay
 		int fireTick = (int) (Math.random() * 100);
 		int fireTickMed = (int) (Math.random() * 100);
 		int fireTickLast = (int) (Math.random() * 100);
 		if (fireTick == 46 && grid[randomRow][randomCol] == FIREINTENSE)
 		{
-
 			grid[randomRow][randomCol] = FIREMED;
 		}
 		if (fireTickMed == 25 && grid[randomRow][randomCol] == FIREMED)
 		{
-
 			grid[randomRow][randomCol] = FIRELOW;
 		}
 		if (fireTickLast == 72 && grid[randomRow][randomCol] == FIRELOW)
 		{
-
 			grid[randomRow][randomCol] = SMOKE;
 		}
 		if (fireTickLast == 80 && grid[randomRow][randomCol] == FIRELOW)
@@ -307,12 +308,22 @@ public class SandLab
 
 			grid[randomRow][randomCol] = EMPTY;
 		}
+		// fire being destroyed by water
 		if (grid[randomRow][randomCol] == FIREINTENSE && randomRow != 99 && grid[randomRow + 1][randomCol] == WATER)
 		{
 				grid[randomRow][randomCol] = WATER;
 				grid[randomRow + 1][randomCol] = EMPTY;
 		}
-		
+		if (grid[randomRow][randomCol] == FIREMED && randomRow != 99 && grid[randomRow + 1][randomCol] == WATER)
+		{
+				grid[randomRow][randomCol] = WATER;
+				grid[randomRow + 1][randomCol] = EMPTY;
+		}
+		if (grid[randomRow][randomCol] == FIRELOW && randomRow != 99 && grid[randomRow + 1][randomCol] == WATER)
+		{
+				grid[randomRow][randomCol] = WATER;
+				grid[randomRow + 1][randomCol] = EMPTY;
+		}
 		// This is the code for sand turning into glass due to heat
 		if (grid[randomRow][randomCol] == SAND && randomRow < 99 && randomRow > 0 && randomCol > 0 && randomCol < 99 && (grid[randomRow - 1][randomCol] == FIREINTENSE || grid[randomRow + 1][randomCol] == FIREINTENSE || grid[randomRow - 1][randomCol - 1] == FIREINTENSE || grid[randomRow - 1][randomCol + 1] == FIREINTENSE || grid[randomRow + 1][randomCol + 1] == FIREINTENSE))
 		{
@@ -326,9 +337,11 @@ public class SandLab
 		{
 			grid[randomRow][randomCol] = GLASS;
 		}
+		// randomized integers for decay eternal flame particles 
 		int eternalDecayingTick = (int) (Math.random() * 25);
 		int eternalDecayingTick2 = (int) (Math.random() * 25);
 		int eternalTick = (int) (Math.random() * 15);
+		// code for the base of the eternal flame block
 		if (grid[randomRow][randomCol] == ETERNALFLAME && randomRow < grid.length - 2 && randomRow > 2 && randomCol < grid[0].length - 2 && randomCol > 2)
 		{
 			if (randomRow < grid.length - 2 && randomRow != 0 && randomCol < grid[0].length - 2)
@@ -336,7 +349,22 @@ public class SandLab
 				grid[randomRow - (int) (Math.random() * 2) - 1][randomCol + (int) (Math.random() * 2) - 1] = ETERNALFLAME1;
 			}
 		}
+		// here is where the eternal flames decay
 		if (eternalDecayingTick == 24 && grid[randomRow][randomCol] == ETERNALFLAME1)
+		{
+			grid[randomRow][randomCol] = EMPTY;
+		}
+		if (eternalDecayingTick == 24 && grid[randomRow][randomCol] == ETERNALFLAME2 || eternalDecayingTick == 20 && grid[randomRow][randomCol] == ETERNALFLAME2)
+		{
+			grid[randomRow][randomCol] = EMPTY;
+		}
+			if (eternalDecayingTick == 24 && grid[randomRow][randomCol] == ETERNALFLAME3 || eternalDecayingTick == 20 && grid[randomRow][randomCol] == ETERNALFLAME3
+				|| eternalDecayingTick == 19 && grid[randomRow][randomCol] == ETERNALFLAME3)
+		{
+			grid[randomRow][randomCol] = EMPTY;
+		}
+		if (eternalDecayingTick == 24 && grid[randomRow][randomCol] == ETERNALFLAME4 || eternalDecayingTick == 20 && grid[randomRow][randomCol] == ETERNALFLAME4
+				|| eternalDecayingTick == 19 && grid[randomRow][randomCol] == ETERNALFLAME4 || eternalDecayingTick == 12 && grid[randomRow][randomCol] == ETERNALFLAME4)
 		{
 			grid[randomRow][randomCol] = EMPTY;
 		}
@@ -346,10 +374,7 @@ public class SandLab
 			grid[randomRow - (int) (Math.random() * 2)][randomCol - (int) (Math.random() * 2) - 1] = ETERNALFLAME2;
 
 		}
-		if (eternalDecayingTick == 24 && grid[randomRow][randomCol] == ETERNALFLAME2 || eternalDecayingTick == 20 && grid[randomRow][randomCol] == ETERNALFLAME2)
-		{
-			grid[randomRow][randomCol] = EMPTY;
-		}
+		
 		if (eternalTick == 13 && grid[randomRow][randomCol] == ETERNALFLAME2 && randomRow < grid.length - 2 && randomRow != 0 && randomCol < grid[0].length - 2 && randomCol > 2)
 		{
 			if (randomRow < grid.length - 2 && randomRow > 2 && randomCol < grid[0].length - 2)
@@ -357,11 +382,7 @@ public class SandLab
 				grid[randomRow - (int) (Math.random() * 2) - 1][randomCol - (int) (Math.random() * 2) - 1] = ETERNALFLAME3;
 			}
 		}
-		if (eternalDecayingTick == 24 && grid[randomRow][randomCol] == ETERNALFLAME3 || eternalDecayingTick == 20 && grid[randomRow][randomCol] == ETERNALFLAME3
-				|| eternalDecayingTick == 19 && grid[randomRow][randomCol] == ETERNALFLAME3)
-		{
-			grid[randomRow][randomCol] = EMPTY;
-		}
+	
 		if (eternalTick == 11 && grid[randomRow][randomCol] == ETERNALFLAME3 && randomRow < grid.length - 2 && randomRow != 0 && randomCol < grid[0].length - 2 && randomCol > 2)
 		{
 			if (randomRow < grid.length - 2 && randomRow != 0 && randomCol < grid[0].length - 2)
@@ -369,11 +390,7 @@ public class SandLab
 				grid[randomRow - (int) (Math.random() * 2)][randomCol - (int) (Math.random() * 2)] = ETERNALFLAME4;
 			}
 		}
-		if (eternalDecayingTick == 24 && grid[randomRow][randomCol] == ETERNALFLAME4 || eternalDecayingTick == 20 && grid[randomRow][randomCol] == ETERNALFLAME4
-				|| eternalDecayingTick == 19 && grid[randomRow][randomCol] == ETERNALFLAME4 || eternalDecayingTick == 12 && grid[randomRow][randomCol] == ETERNALFLAME4)
-		{
-			grid[randomRow][randomCol] = EMPTY;
-		}
+		
 		if (eternalTick == 10 && grid[randomRow][randomCol] == ETERNALFLAME4 && randomRow < grid.length - 2 && randomRow != 0 && randomCol < grid[0].length - 2)
 		{
 			if (randomRow < grid.length - 2 && randomRow != 0 && randomCol < grid[0].length - 2)
