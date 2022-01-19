@@ -1114,6 +1114,7 @@ public class SandLab
 			grid[randomRow + 2][randomCol - 2] = getRandomSmoke();
 			grid[randomRow + 2][randomCol + 1] = getRandomSmoke();
 			grid[randomRow + 2][randomCol + 2] = getRandomSmoke();
+			grid[randomRow + 3][randomCol] = getRandomSmoke();
 		}
 		// Remember, you need to access both row and column to specify a spot in the
 		// array
