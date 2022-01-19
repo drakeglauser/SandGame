@@ -27,7 +27,18 @@ public class SandLab
 	Color FireWorkFragment9 = new Color(110, 32, 69);
 	Color FireWorkFragment10 = new Color(255, 255, 255);
 	Color Glass = new Color(214, 214, 214);
-//	Color Dynamite = new Color();
+	Color Dynamite = new Color(236, 12, 12);
+	Color LitDynamite = new Color(236, 20, 20);
+	Color ExplosionSmoke1 = new Color(63, 63, 63);
+	Color ExplosionSmoke2 = new Color(64, 64, 64);
+	Color ExplosionSmoke3 = new Color(65, 65, 65);
+	Color ExplosionSmoke4 = new Color(66, 66, 66);
+	Color ExplosionSmoke5 = new Color(67, 67, 67);
+	Color ExplosionSmoke6 = new Color(68, 68, 68);
+	Color ExplosionSmoke7 = new Color(69, 69, 69);
+	Color ExplosionSmoke8 = new Color(70, 70, 70);
+	Color ExplosionSmoke9 = new Color(71, 71, 71);
+	Color ExplosionSmoke10 = new Color(72, 72, 72);
 	// add constants for particle types here
 	public static final int EMPTY = 0;
 	public static final int METAL = 1;
@@ -38,11 +49,12 @@ public class SandLab
 	public static final int ETERNALFLAME = 6;
 	public static final int FIREWORKBASE = 7;
 	public static final int GLASS = 8;
-	public static final int CLEARALL = 9;
+	public static final int DYNAMITE = 9;
+	public static final int CLEARALL = 10;
 	public static final int FIREMED = 15;
 	public static final int FIRELOW = 28;
 	public static final int ETERNALFLAME1 = 29;
-	public static final int ETERNALFLAME2 = 10;
+	public static final int ETERNALFLAME2 = 30;
 	public static final int ETERNALFLAME3 = 11;
 	public static final int ETERNALFLAME4 = 12;
 	public static final int ETERNALFLAME5 = 13;
@@ -59,6 +71,17 @@ public class SandLab
 	public static final int FIREWORKFRAGMENT9 = 25;
 	public static final int FIREWORKFRAGMENT10 = 26;
 	public static final int FIREWORKEXPLOSIONPIECE = 27;
+	public static final int EXPLOSIONSMOKE1 = 31;
+	public static final int EXPLOSIONSMOKE2 = 32;
+	public static final int EXPLOSIONSMOKE3 = 33;
+	public static final int EXPLOSIONSMOKE4 = 34;
+	public static final int EXPLOSIONSMOKE5 = 35;
+	public static final int EXPLOSIONSMOKE6 = 36;
+	public static final int EXPLOSIONSMOKE7 = 37;
+	public static final int EXPLOSIONSMOKE8 = 38;
+	public static final int EXPLOSIONSMOKE9 = 39;
+	public static final int EXPLOSIONSMOKE10 = 40;
+	public static final int LITDYNAMITE = 41;
 
 	
 	private int[][] grid;
@@ -74,7 +97,7 @@ public class SandLab
 	{
 		String[] names;
 		// number of buttons
-		names = new String[10];
+		names = new String[11];
 		// Name of the buttons and what string they are asinged too
 		names[CLEARALL] = "Clear Screen";
 		names[SAND] = "Sand";
@@ -86,6 +109,7 @@ public class SandLab
 		names[ETERNALFLAME] = "EternalFlame";
 		names[FIREWORKBASE] = "Firework";
 		names[GLASS] = "Glass";
+		names[DYNAMITE] = "Dynamite";
 	
 
 		//code to initialize the data member grid with same dimensions
@@ -225,6 +249,58 @@ public class SandLab
 				{
 					display.setColor(row,  col, Glass);
 				}
+				else if (currentTool == CLEARALL)
+				{
+					display.setColor(row, col, Glass);
+				}
+				else if (currentTool == DYNAMITE)
+				{
+					display.setColor(row, col, Dynamite);
+				}
+				else if (currentTool == EXPLOSIONSMOKE1)
+				{
+					display.setColor(row, col, ExplosionSmoke1);
+				}
+				else if (currentTool == EXPLOSIONSMOKE2)
+				{
+					display.setColor(row, col, ExplosionSmoke2);
+				}
+				else if (currentTool == EXPLOSIONSMOKE3)
+				{
+					display.setColor(row, col, ExplosionSmoke3);
+				}
+				else if (currentTool == EXPLOSIONSMOKE4)
+				{
+					display.setColor(row, col, ExplosionSmoke4);
+				}
+				else if (currentTool == EXPLOSIONSMOKE5)
+				{
+					display.setColor(row, col, ExplosionSmoke5);
+				}
+				else if (currentTool == EXPLOSIONSMOKE6)
+				{
+					display.setColor(row, col, ExplosionSmoke6);
+				}
+				else if (currentTool == EXPLOSIONSMOKE7)
+				{
+					display.setColor(row, col, ExplosionSmoke7);
+				}
+				else if (currentTool == EXPLOSIONSMOKE8)
+				{
+					display.setColor(row, col, ExplosionSmoke8);
+				}
+				else if (currentTool == EXPLOSIONSMOKE9)
+				{
+					display.setColor(row, col, ExplosionSmoke9);
+				}
+				else if (currentTool == EXPLOSIONSMOKE10)
+				{
+					display.setColor(row, col, ExplosionSmoke10);
+				}
+				else if (currentTool == LITDYNAMITE)
+				{
+					display.setColor(row, col, LitDynamite);
+				}
 			}
 		}
 	}
@@ -233,7 +309,21 @@ public class SandLab
 	{
 		int randomRow = (int) (Math.random() * grid.length);
 		int randomCol = (int) (Math.random() * grid[0].length);
+		int allCol = (grid[0].length) - 1;
+		int allRow = (grid.length) - 1;
 
+		if (grid[randomRow][randomCol] == CLEARALL && randomRow != 99 && randomCol != 99 && randomRow != 0 && randomCol != 0)
+		{
+			grid[randomRow][randomCol] = CLEARALL;
+			grid[randomRow - 1][randomCol] = CLEARALL;
+			grid[randomRow + 1][randomCol] = CLEARALL;
+			grid[randomRow][randomCol - 1] = CLEARALL;
+			grid[randomRow][randomCol + 1] = CLEARALL;
+			grid[randomRow - 1][randomCol - 1] = CLEARALL;
+			grid[randomRow - 1][randomCol + 1] = CLEARALL;
+			grid[randomRow + 1][randomCol + 1] = CLEARALL;
+			grid[randomRow + 1][randomCol - 1] = CLEARALL;
+		}
 		if (grid[randomRow][randomCol] == SAND && randomRow != 99 && grid[randomRow + 1][randomCol] == EMPTY)
 		{
 			grid[randomRow][randomCol] = EMPTY;
@@ -465,7 +555,7 @@ public class SandLab
 			grid[randomRow][randomCol] = FIREWORKEXPLOSIONPIECE;
 		}
 		// code for the boundrys of the grid
-		if (grid[randomRow][randomCol] == LITFIREWORKBASE && randomRow < 3 || randomCol < 3 || randomCol > 96)
+		if (grid[randomRow][randomCol] == LITFIREWORKBASE && randomRow < 3 && randomCol < 3 && randomCol > 96)
 		{
 			grid[randomRow][randomCol] = EMPTY;
 		}
@@ -530,7 +620,7 @@ public class SandLab
 				grid[randomRow + 1][randomCol + 1] = FIREWORKFRAGMENT1;
 				grid[randomRow][randomCol] = EMPTY;
 			}
-			if(allDirection == 6 && randomCol != 99&& grid[randomRow][randomCol + 1] == EMPTY)
+			if(allDirection == 6 && randomCol != 99 && grid[randomRow][randomCol + 1] == EMPTY)
 			{
 				grid[randomRow][randomCol + 1] = FIREWORKFRAGMENT1;
 				grid[randomRow][randomCol] =  EMPTY;
@@ -968,6 +1058,63 @@ public class SandLab
 				grid[randomRow][randomCol] = EMPTY;
 			}
 		}
+		// litting the dynamite
+		if (grid[randomRow][randomCol] == DYNAMITE)
+		{
+			// code for lighting the dynamite
+			if (direction == 0 && randomRow != 99 && direction == 0 && randomRow != 99 && grid[randomRow + 1][randomCol] == FIREINTENSE
+					|| direction == 0 && randomRow != 99 && grid[randomRow + 1][randomCol] == FIREMED || direction == 0 && randomRow != 99 && grid[randomRow + 1][randomCol] == FIRELOW)
+			{
+				grid[randomRow][randomCol] = EMPTY;
+				grid[randomRow][randomCol] = LITDYNAMITE;
+			}
+			if (direction == 1 && randomCol != 0 && direction == 1 && randomCol != 0 && grid[randomRow][randomCol - 1] == FIREINTENSE
+					|| direction == 1 && randomCol != 0 && grid[randomRow][randomCol - 1] == FIREMED || direction == 1 && randomCol != 0 && grid[randomRow][randomCol - 1] == FIRELOW)
+			{
+				grid[randomRow][randomCol] = EMPTY;
+				grid[randomRow][randomCol] = LITDYNAMITE;
+			}
+			if (direction == 2 && randomCol != 99 && direction == 2 && randomCol != 99 && grid[randomRow][randomCol + 1] == FIREINTENSE
+					|| direction == 2 && randomCol != 99 && grid[randomRow][randomCol + 1] == FIREMED || direction == 2 && randomCol != 99 && grid[randomRow][randomCol + 1] == FIRELOW)
+			{
+				grid[randomRow][randomCol] = EMPTY;
+				grid[randomRow][randomCol] = LITDYNAMITE;
+			}
+			if (direction == 0 && randomRow != 0 && direction == 0 && randomRow != 0 && grid[randomRow - 1][randomCol] == FIREINTENSE
+					|| direction == 0 && randomRow != 0 && grid[randomRow - 1][randomCol] == FIREMED || direction == 0 && randomRow != 0 && grid[randomRow - 1][randomCol] == FIRELOW)
+			{
+				grid[randomRow][randomCol] = EMPTY;
+				grid[randomRow][randomCol] = LITDYNAMITE;
+			}
+		}
+		if (fireworkExplosion == 2 && grid[randomRow][randomCol] == LITDYNAMITE && randomRow != 0 && randomRow != 1 && randomRow != 2 && randomCol != 0 && randomCol != 1 && randomCol != 2 && randomRow != 97 && randomRow != 98 && randomRow != 99 && randomCol != 97 && randomCol != 98 && randomCol != 99)
+		{
+			grid[randomRow][randomCol] = getRandomSmoke();
+			grid[randomRow][randomCol - 1] = getRandomSmoke();
+			grid[randomRow][randomCol - 2] = getRandomSmoke();
+			grid[randomRow][randomCol + 1] = getRandomSmoke();
+			grid[randomRow][randomCol + 2] = getRandomSmoke();
+			grid[randomRow - 1][randomCol] = getRandomSmoke();
+			grid[randomRow - 1][randomCol - 1] = getRandomSmoke();
+			grid[randomRow - 1][randomCol - 2] = getRandomSmoke();
+			grid[randomRow - 1][randomCol + 1] = getRandomSmoke();
+			grid[randomRow - 1][randomCol + 2] = getRandomSmoke();
+			grid[randomRow - 2][randomCol] = getRandomSmoke();
+			grid[randomRow - 2][randomCol - 1] = getRandomSmoke();
+			grid[randomRow - 2][randomCol - 2] = getRandomSmoke();
+			grid[randomRow - 2][randomCol + 1] = getRandomSmoke();
+			grid[randomRow - 2][randomCol + 2] = getRandomSmoke();
+			grid[randomRow + 1][randomCol] = getRandomSmoke();
+			grid[randomRow + 1][randomCol - 1] = getRandomSmoke();
+			grid[randomRow + 1][randomCol - 2] = getRandomSmoke();
+			grid[randomRow + 1][randomCol + 1] = getRandomSmoke();
+			grid[randomRow + 1][randomCol + 2] = getRandomSmoke();
+			grid[randomRow + 2][randomCol] = getRandomSmoke();
+			grid[randomRow + 2][randomCol - 1] = getRandomSmoke();
+			grid[randomRow + 2][randomCol - 2] = getRandomSmoke();
+			grid[randomRow + 2][randomCol + 1] = getRandomSmoke();
+			grid[randomRow + 2][randomCol + 2] = getRandomSmoke();
+		}
 		// Remember, you need to access both row and column to specify a spot in the
 		// array
 		// The scalar refers to how big the value could be
@@ -981,6 +1128,13 @@ public class SandLab
 		int fireworkRandomizer = (int) (Math.random() * fireworkSelection.length);
 		fireworkRoulete = fireworkSelection[fireworkRandomizer];
 		return fireworkRoulete;
+	}
+	public int getRandomSmoke() {
+		int smokeRoulete = -1;
+		int []smokeSelection = {EXPLOSIONSMOKE1, EXPLOSIONSMOKE1, EXPLOSIONSMOKE1, EXPLOSIONSMOKE2, EXPLOSIONSMOKE2, EXPLOSIONSMOKE3, EXPLOSIONSMOKE3, EXPLOSIONSMOKE4, EXPLOSIONSMOKE5, EXPLOSIONSMOKE6, EXPLOSIONSMOKE7, EXPLOSIONSMOKE8, EXPLOSIONSMOKE9, EXPLOSIONSMOKE10, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY};
+		int smokeRandomizer = (int) (Math.random() * smokeSelection.length);
+		smokeRoulete = smokeSelection[smokeRandomizer];
+		return smokeRoulete;
 	}
 	// do not modify this method!
 	public void run()
