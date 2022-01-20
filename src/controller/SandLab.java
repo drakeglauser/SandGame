@@ -318,10 +318,13 @@ public class SandLab
 		int allCol = (grid[0].length) - 1;
 		int allRow = (grid.length) - 1;
 
-		if (grid[randomRow][randomCol] == SAND && randomRow != 99 && grid[randomRow + 1][randomCol] == EMPTY)
+		if (grid[randomRow][randomCol] == SAND && randomRow != 99 && randomCol != 1 && randomCol != 99 && grid[randomRow + 1][randomCol] == EMPTY )
 		{
+			
+			
 			grid[randomRow][randomCol] = EMPTY;
 			grid[randomRow + 1][randomCol] = SAND;
+			
 		}
 		int direction = (int) (Math.random() * 3);
 		int allDirection = (int) (Math.random() * 9);
