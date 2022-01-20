@@ -28,7 +28,7 @@ public class SandLab
 	Color FireWorkFragment10 = new Color(255, 255, 255);
 	Color Glass = new Color(214, 214, 214);
 	Color Dynamite = new Color(236, 12, 12);
-	Color LitDynamite = new Color(236, 20, 20);
+	Color LitDynamite = new Color(216, 50, 50);
 	Color ExplosionSmoke1 = new Color(63, 63, 63);
 	Color ExplosionSmoke2 = new Color(64, 64, 64);
 	Color ExplosionSmoke3 = new Color(65, 65, 65);
@@ -1083,7 +1083,8 @@ for (int cols = 0; cols < grid[0].length; cols++)
 				grid[randomRow][randomCol] = LITDYNAMITE;
 			}
 		}
-		if (fireworkExplosion == 2 && grid[randomRow][randomCol] == LITDYNAMITE && randomRow != 0 && randomRow != 1 && randomRow != 2 && randomCol != 0 && randomCol != 1 && randomCol != 2 && randomRow != 97 && randomRow != 98 && randomRow != 99 && randomCol != 97 && randomCol != 98 && randomCol != 99)
+		int dynamiteExplosion = (int) (Math.random() * 10);
+		if (dynamiteExplosion == 2 && grid[randomRow][randomCol] == LITDYNAMITE && randomRow != 0 && randomRow != 1 && randomRow != 2 && randomCol != 0 && randomCol != 1 && randomCol != 2 && randomRow != 97 && randomRow != 98 && randomRow != 99 && randomCol != 97 && randomCol != 98 && randomCol != 99)
 		{
 			grid[randomRow][randomCol] = getRandomSmoke();
 			grid[randomRow][randomCol - 1] = getRandomSmoke();
@@ -1135,6 +1136,507 @@ for (int cols = 0; cols < grid[0].length; cols++)
 			grid[randomRow + 1][randomCol + 3] = getRandomSmoke();
 			grid[randomRow + 2][randomCol + 3] = getRandomSmoke();
 		}
+		if (grid[randomRow][randomCol] == LITDYNAMITE && randomRow > 5 && randomRow < 94 && randomCol < 94 && randomCol > 5)
+		{
+			if (grid[randomRow][randomCol] == LITDYNAMITE && grid[randomRow - 1][randomCol] == DYNAMITE)
+			{
+				grid[randomRow - 1][randomCol] = LITDYNAMITE;
+			}
+			if (grid[randomRow][randomCol] == LITDYNAMITE && grid[randomRow + 1][randomCol] == DYNAMITE)
+			{
+				grid[randomRow + 1][randomCol] = LITDYNAMITE;
+			}
+			if (grid[randomRow][randomCol] == LITDYNAMITE && grid[randomRow][randomCol + 1] == DYNAMITE)
+			{
+				grid[randomRow][randomCol + 1] = LITDYNAMITE;
+			}
+			if (grid[randomRow][randomCol] == LITDYNAMITE && grid[randomRow][randomCol - 1] == DYNAMITE)
+			{
+				grid[randomRow][randomCol - 1] = LITDYNAMITE;
+			}
+		}
+	if (grid[randomRow][randomCol] == EXPLOSIONSMOKE1  && randomRow > 5 && randomRow < 94 && randomCol < 94 && randomCol > 5)
+	{
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE1 && grid[randomRow - 1][randomCol] == DYNAMITE)
+		{
+			grid[randomRow - 1][randomCol] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE1 && grid[randomRow + 1][randomCol] == DYNAMITE)
+		{
+			grid[randomRow + 1][randomCol] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE1 && grid[randomRow + 1][randomCol - 1] == DYNAMITE)
+		{
+			grid[randomRow + 1][randomCol - 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE1 && grid[randomRow + 1][randomCol + 1] == DYNAMITE)
+		{
+			grid[randomRow + 1][randomCol + 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE1 && grid[randomRow - 1][randomCol + 1] == DYNAMITE)
+		{
+			grid[randomRow - 1][randomCol + 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE1 && grid[randomRow - 1][randomCol - 1] == DYNAMITE)
+		{
+			grid[randomRow - 1][randomCol - 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE1 && grid[randomRow - 1][randomCol - 1] == DYNAMITE)
+		{
+			grid[randomRow - 1][randomCol - 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE1 && grid[randomRow][randomCol - 1] == DYNAMITE)
+		{
+			grid[randomRow][randomCol - 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE1 && grid[randomRow][randomCol + 1] == DYNAMITE)
+		{
+			grid[randomRow][randomCol + 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+	}
+	if (grid[randomRow][randomCol] == EXPLOSIONSMOKE2  && randomRow > 5 && randomRow < 94 && randomCol < 94 && randomCol > 5)
+	{
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE2 && grid[randomRow - 1][randomCol] == DYNAMITE)
+		{
+			grid[randomRow - 1][randomCol] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE2 && grid[randomRow + 1][randomCol] == DYNAMITE)
+		{
+			grid[randomRow + 1][randomCol] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE2 && grid[randomRow + 1][randomCol - 1] == DYNAMITE)
+		{
+			grid[randomRow + 1][randomCol - 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE2 && grid[randomRow + 1][randomCol + 1] == DYNAMITE)
+		{
+			grid[randomRow + 1][randomCol + 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE2 && grid[randomRow - 1][randomCol + 1] == DYNAMITE)
+		{
+			grid[randomRow - 1][randomCol + 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE2 && grid[randomRow - 1][randomCol - 1] == DYNAMITE)
+		{
+			grid[randomRow - 1][randomCol - 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE2 && grid[randomRow - 1][randomCol - 1] == DYNAMITE)
+		{
+			grid[randomRow - 1][randomCol - 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE2 && grid[randomRow][randomCol - 1] == DYNAMITE)
+		{
+			grid[randomRow][randomCol - 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE2 && grid[randomRow][randomCol + 1] == DYNAMITE)
+		{
+			grid[randomRow][randomCol + 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+	}
+	if (grid[randomRow][randomCol] == EXPLOSIONSMOKE3  && randomRow > 5 && randomRow < 94 && randomCol < 94 && randomCol > 5)
+	{
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE3 && grid[randomRow - 1][randomCol] == DYNAMITE)
+		{
+			grid[randomRow - 1][randomCol] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE3 && grid[randomRow + 1][randomCol] == DYNAMITE)
+		{
+			grid[randomRow + 1][randomCol] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE3 && grid[randomRow + 1][randomCol - 1] == DYNAMITE)
+		{
+			grid[randomRow + 1][randomCol - 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE3 && grid[randomRow + 1][randomCol + 1] == DYNAMITE)
+		{
+			grid[randomRow + 1][randomCol + 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE3 && grid[randomRow - 1][randomCol + 1] == DYNAMITE)
+		{
+			grid[randomRow - 1][randomCol + 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE3 && grid[randomRow - 1][randomCol - 1] == DYNAMITE)
+		{
+			grid[randomRow - 1][randomCol - 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE3 && grid[randomRow - 1][randomCol - 1] == DYNAMITE)
+		{
+			grid[randomRow - 1][randomCol - 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE3 && grid[randomRow][randomCol - 1] == DYNAMITE)
+		{
+			grid[randomRow][randomCol - 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE3 && grid[randomRow][randomCol + 1] == DYNAMITE)
+		{
+			grid[randomRow][randomCol + 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+	}
+	if (grid[randomRow][randomCol] == EXPLOSIONSMOKE4  && randomRow > 5 && randomRow < 94 && randomCol < 94 && randomCol > 5)
+	{
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE4 && grid[randomRow - 1][randomCol] == DYNAMITE)
+		{
+			grid[randomRow - 1][randomCol] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE4 && grid[randomRow + 1][randomCol] == DYNAMITE)
+		{
+			grid[randomRow + 1][randomCol] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE4 && grid[randomRow + 1][randomCol - 1] == DYNAMITE)
+		{
+			grid[randomRow + 1][randomCol - 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE4 && grid[randomRow + 1][randomCol + 1] == DYNAMITE)
+		{
+			grid[randomRow + 1][randomCol + 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE4 && grid[randomRow - 1][randomCol + 1] == DYNAMITE)
+		{
+			grid[randomRow - 1][randomCol + 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE4 && grid[randomRow - 1][randomCol - 1] == DYNAMITE)
+		{
+			grid[randomRow - 1][randomCol - 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE4 && grid[randomRow - 1][randomCol - 1] == DYNAMITE)
+		{
+			grid[randomRow - 1][randomCol - 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE4 && grid[randomRow][randomCol - 1] == DYNAMITE)
+		{
+			grid[randomRow][randomCol - 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE4 && grid[randomRow][randomCol + 1] == DYNAMITE)
+		{
+			grid[randomRow][randomCol + 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+	}
+	if (grid[randomRow][randomCol] == EXPLOSIONSMOKE5  && randomRow > 5 && randomRow < 94 && randomCol < 94 && randomCol > 5)
+	{
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE5 && grid[randomRow - 1][randomCol] == DYNAMITE)
+		{
+			grid[randomRow - 1][randomCol] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE5 && grid[randomRow + 1][randomCol] == DYNAMITE)
+		{
+			grid[randomRow + 1][randomCol] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE5 && grid[randomRow + 1][randomCol - 1] == DYNAMITE)
+		{
+			grid[randomRow + 1][randomCol - 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE5 && grid[randomRow + 1][randomCol + 1] == DYNAMITE)
+		{
+			grid[randomRow + 1][randomCol + 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE5 && grid[randomRow - 1][randomCol + 1] == DYNAMITE)
+		{
+			grid[randomRow - 1][randomCol + 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE5 && grid[randomRow - 1][randomCol - 1] == DYNAMITE)
+		{
+			grid[randomRow - 1][randomCol - 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE5 && grid[randomRow - 1][randomCol - 1] == DYNAMITE)
+		{
+			grid[randomRow - 1][randomCol - 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE5 && grid[randomRow][randomCol - 1] == DYNAMITE)
+		{
+			grid[randomRow][randomCol - 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE5 && grid[randomRow][randomCol + 1] == DYNAMITE)
+		{
+			grid[randomRow][randomCol + 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+	}
+	if (grid[randomRow][randomCol] == EXPLOSIONSMOKE6  && randomRow > 5 && randomRow < 94 && randomCol < 94 && randomCol > 5)
+	{
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE6 && grid[randomRow - 1][randomCol] == DYNAMITE)
+		{
+			grid[randomRow - 1][randomCol] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE6 && grid[randomRow + 1][randomCol] == DYNAMITE)
+		{
+			grid[randomRow + 1][randomCol] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE6 && grid[randomRow + 1][randomCol - 1] == DYNAMITE)
+		{
+			grid[randomRow + 1][randomCol - 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE6 && grid[randomRow + 1][randomCol + 1] == DYNAMITE)
+		{
+			grid[randomRow + 1][randomCol + 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE6 && grid[randomRow - 1][randomCol + 1] == DYNAMITE)
+		{
+			grid[randomRow - 1][randomCol + 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE6 && grid[randomRow - 1][randomCol - 1] == DYNAMITE)
+		{
+			grid[randomRow - 1][randomCol - 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE6 && grid[randomRow - 1][randomCol - 1] == DYNAMITE)
+		{
+			grid[randomRow - 1][randomCol - 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE6 && grid[randomRow][randomCol - 1] == DYNAMITE)
+		{
+			grid[randomRow][randomCol - 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE6 && grid[randomRow][randomCol + 1] == DYNAMITE)
+		{
+			grid[randomRow][randomCol + 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+	}
+	if (grid[randomRow][randomCol] == EXPLOSIONSMOKE7  && randomRow > 5 && randomRow < 94 && randomCol < 94 && randomCol > 5)
+	{
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE7 && grid[randomRow - 1][randomCol] == DYNAMITE)
+		{
+			grid[randomRow - 1][randomCol] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE7 && grid[randomRow + 1][randomCol] == DYNAMITE)
+		{
+			grid[randomRow + 1][randomCol] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE7 && grid[randomRow + 1][randomCol - 1] == DYNAMITE)
+		{
+			grid[randomRow + 1][randomCol - 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE7 && grid[randomRow + 1][randomCol + 1] == DYNAMITE)
+		{
+			grid[randomRow + 1][randomCol + 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE7 && grid[randomRow - 1][randomCol + 1] == DYNAMITE)
+		{
+			grid[randomRow - 1][randomCol + 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE7 && grid[randomRow - 1][randomCol - 1] == DYNAMITE)
+		{
+			grid[randomRow - 1][randomCol - 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE7 && grid[randomRow - 1][randomCol - 1] == DYNAMITE)
+		{
+			grid[randomRow - 1][randomCol - 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE7 && grid[randomRow][randomCol - 1] == DYNAMITE)
+		{
+			grid[randomRow][randomCol - 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE7 && grid[randomRow][randomCol + 1] == DYNAMITE)
+		{
+			grid[randomRow][randomCol + 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+	}
+	if (grid[randomRow][randomCol] == EXPLOSIONSMOKE8  && randomRow > 5 && randomRow < 94 && randomCol < 94 && randomCol > 5)
+	{
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE8 && grid[randomRow - 1][randomCol] == DYNAMITE)
+		{
+			grid[randomRow - 1][randomCol] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE8 && grid[randomRow + 1][randomCol] == DYNAMITE)
+		{
+			grid[randomRow + 1][randomCol] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE8 && grid[randomRow + 1][randomCol - 1] == DYNAMITE)
+		{
+			grid[randomRow + 1][randomCol - 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE8 && grid[randomRow + 1][randomCol + 1] == DYNAMITE)
+		{
+			grid[randomRow + 1][randomCol + 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE8 && grid[randomRow - 1][randomCol + 1] == DYNAMITE)
+		{
+			grid[randomRow - 1][randomCol + 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE8 && grid[randomRow - 1][randomCol - 1] == DYNAMITE)
+		{
+			grid[randomRow - 1][randomCol - 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE8 && grid[randomRow - 1][randomCol - 1] == DYNAMITE)
+		{
+			grid[randomRow - 1][randomCol - 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE8 && grid[randomRow][randomCol - 1] == DYNAMITE)
+		{
+			grid[randomRow][randomCol - 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE8 && grid[randomRow][randomCol + 1] == DYNAMITE)
+		{
+			grid[randomRow][randomCol + 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+	}
+	if (grid[randomRow][randomCol] == EXPLOSIONSMOKE9  && randomRow > 5 && randomRow < 94 && randomCol < 94 && randomCol > 5)
+	{
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE9 && grid[randomRow - 1][randomCol] == DYNAMITE)
+		{
+			grid[randomRow - 1][randomCol] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE9 && grid[randomRow + 1][randomCol] == DYNAMITE)
+		{
+			grid[randomRow + 1][randomCol] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE9 && grid[randomRow + 1][randomCol - 1] == DYNAMITE)
+		{
+			grid[randomRow + 1][randomCol - 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE9 && grid[randomRow + 1][randomCol + 1] == DYNAMITE)
+		{
+			grid[randomRow + 1][randomCol + 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE9 && grid[randomRow - 1][randomCol + 1] == DYNAMITE)
+		{
+			grid[randomRow - 1][randomCol + 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE9 && grid[randomRow - 1][randomCol - 1] == DYNAMITE)
+		{
+			grid[randomRow - 1][randomCol - 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE9 && grid[randomRow - 1][randomCol - 1] == DYNAMITE)
+		{
+			grid[randomRow - 1][randomCol - 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE9 && grid[randomRow][randomCol - 1] == DYNAMITE)
+		{
+			grid[randomRow][randomCol - 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE9 && grid[randomRow][randomCol + 1] == DYNAMITE)
+		{
+			grid[randomRow][randomCol + 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+	}
+	if (grid[randomRow][randomCol] == EXPLOSIONSMOKE10  && randomRow > 5 && randomRow < 94 && randomCol < 94 && randomCol > 5)
+	{
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE10 && grid[randomRow - 1][randomCol] == DYNAMITE)
+		{
+			grid[randomRow - 1][randomCol] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE10 && grid[randomRow + 1][randomCol] == DYNAMITE)
+		{
+			grid[randomRow + 1][randomCol] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE10 && grid[randomRow + 1][randomCol - 1] == DYNAMITE)
+		{
+			grid[randomRow + 1][randomCol - 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE10 && grid[randomRow + 1][randomCol + 1] == DYNAMITE)
+		{
+			grid[randomRow + 1][randomCol + 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE10 && grid[randomRow - 1][randomCol + 1] == DYNAMITE)
+		{
+			grid[randomRow - 1][randomCol + 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE10 && grid[randomRow - 1][randomCol - 1] == DYNAMITE)
+		{
+			grid[randomRow - 1][randomCol - 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE10 && grid[randomRow - 1][randomCol - 1] == DYNAMITE)
+		{
+			grid[randomRow - 1][randomCol - 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE10 && grid[randomRow][randomCol - 1] == DYNAMITE)
+		{
+			grid[randomRow][randomCol - 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE10 && grid[randomRow][randomCol + 1] == DYNAMITE)
+		{
+			grid[randomRow][randomCol + 1] = LITDYNAMITE;
+			dynamiteExplosion = 2;
+		}
+	}
+
+
 		if (grid[randomRow][randomCol] == EXPLOSIONSMOKE1)
 		{
 			if(allSmokeDirection == 0 && randomRow != 0 && grid[randomRow - 1][randomCol] == EMPTY)
