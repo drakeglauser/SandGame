@@ -318,14 +318,35 @@ public class SandLab
 		int allCol = (grid[0].length) - 1;
 		int allRow = (grid.length) - 1;
 
-		if (grid[randomRow][randomCol] == SAND && randomRow != 99 && randomCol != 1 && randomCol != 99 && grid[randomRow + 1][randomCol] == EMPTY )
+		if (grid[randomRow][randomCol] == SAND && randomRow != 99 && randomCol != 0 && randomCol != 99  )
 		{
 			
-			
+		 if (grid[randomRow][randomCol] == SAND && randomRow != 99 && randomCol != 0 && randomCol != 99 && grid[randomRow + 1][randomCol] == EMPTY )
+			{
+				
+				
+				grid[randomRow][randomCol] = EMPTY;
+				grid[randomRow + 1][randomCol] = SAND;
+				
+			}
+		 if (grid[randomRow][randomCol] == SAND && grid[randomRow + 1][randomCol - 1] == SAND && grid[randomRow + 1][randomCol + 1] == SAND)
+		 {
+			 
+		 }
+		else if (grid[randomRow][randomCol] == SAND && randomRow != 99 && randomCol != 0 && randomCol != 99 && grid[randomRow][randomCol + 1] == SAND && grid[randomRow][randomCol - 1] == EMPTY)
+		{
 			grid[randomRow][randomCol] = EMPTY;
-			grid[randomRow + 1][randomCol] = SAND;
+			grid[randomRow][randomCol - 1] = SAND;
+		}
+		else if (grid[randomRow][randomCol] == SAND && randomRow != 99 && randomCol != 0 && randomCol != 99 && grid[randomRow][randomCol - 1] == SAND && grid[randomRow][randomCol + 1] == EMPTY)
+		{
+			grid[randomRow][randomCol] = EMPTY;
+			grid[randomRow][randomCol + 1] = SAND;
+		}
 			
 		}
+		
+		
 		int direction = (int) (Math.random() * 3);
 		int allDirection = (int) (Math.random() * 9);
 		// this is the code for water and its ability to move and remove fire
