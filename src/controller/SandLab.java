@@ -55,7 +55,7 @@ public class SandLab
 	public static final int FIRELOW = 28;
 	public static final int ETERNALFLAME1 = 29;
 	public static final int ETERNALFLAME2 = 30;
-	public static final int ETERNALFLAME3 = 11;
+	public static final int ETERNALFLAME3 = 42;
 	public static final int ETERNALFLAME4 = 12;
 	public static final int ETERNALFLAME5 = 13;
 	public static final int ETERNALFLAME6 = 14;
@@ -82,9 +82,16 @@ public class SandLab
 	public static final int EXPLOSIONSMOKE9 = 39;
 	public static final int EXPLOSIONSMOKE10 = 40;
 	public static final int LITDYNAMITE = 41;
-
+	public static final int SHOCKWAVE = 11;
+	public static final int SHOCKWAVEMAG5 = 43;
+	public static final int SHOCKWAVEMAG4 = 44;
+	public static final int SHOCKWAVEMAG3 = 45;
+	public static final int SHOCKWAVEMAG2 = 46;
+	public static final int SHOCKWAVEMAG1 = 47;
 	private int[][] grid;
 	private SandDisplay display;
+	private int movable;
+	
 
 	/**
 	 * Constructor for SandLab
@@ -96,7 +103,7 @@ public class SandLab
 	{
 		String[] names;
 		// number of buttons
-		names = new String[11];
+		names = new String[12];
 		// Name of the buttons and what string they are asinged too
 		names[CLEARALL] = "Clear Screen";
 		names[SAND] = "Sand";
@@ -109,6 +116,7 @@ public class SandLab
 		names[FIREWORKBASE] = "Firework";
 		names[GLASS] = "Glass";
 		names[DYNAMITE] = "Dynamite";
+		names[SHOCKWAVE] = "ShockWave";
 
 		// code to initialize the data member grid with same dimensions
 		this.grid = new int[numRows][numCols];
@@ -141,6 +149,7 @@ public class SandLab
 				else if (currentTool == SAND)
 				{
 					display.setColor(row, col, Color.YELLOW);
+				
 				}
 				else if (currentTool == WATER)
 				{
@@ -305,6 +314,30 @@ public class SandLab
 				else if (currentTool == LITDYNAMITE)
 				{
 					display.setColor(row, col, LitDynamite);
+				}
+				else if (currentTool == SHOCKWAVE)
+				{
+					display.setColor(row, col, Color.BLACK);
+				}
+				else if (currentTool == SHOCKWAVEMAG5)
+				{
+					display.setColor(row, col, Color.BLACK);
+				}
+				else if (currentTool == SHOCKWAVEMAG4)
+				{
+					display.setColor(row, col, Color.BLACK);
+				}
+				else if (currentTool == SHOCKWAVEMAG3)
+				{
+					display.setColor(row, col, Color.BLACK);
+				}
+				else if (currentTool == SHOCKWAVEMAG2)
+				{
+					display.setColor(row, col, Color.BLACK);
+				}
+				else if (currentTool == SHOCKWAVEMAG1)
+				{
+					display.setColor(row, col, Color.BLACK);
 				}
 			}
 		}
@@ -3093,6 +3126,407 @@ public class SandLab
 			{
 				grid[randomRow][randomCol + 1] = FIREWORKEXPLOSIONPIECE;
 				fireworkExplosion = 2;
+			}
+		}
+		if (grid[randomRow][randomCol] == SHOCKWAVE)
+		{
+			if(grid[randomRow][randomCol] == SHOCKWAVE && grid[randomRow - 1][randomCol] == SAND)
+			{
+				grid[randomRow][randomCol] = SHOCKWAVEMAG5;
+				grid[randomRow - 1][randomCol] = EMPTY;
+				grid[randomRow - 1][randomCol] = SHOCKWAVEMAG5;
+				grid[randomRow - 2][randomCol] = SAND;
+			}
+			if(grid[randomRow][randomCol] == SHOCKWAVE && grid[randomRow - 1][randomCol - 1] == SAND)
+			{
+				grid[randomRow][randomCol] = SHOCKWAVEMAG5;
+				grid[randomRow - 1][randomCol - 1] = EMPTY;
+				grid[randomRow - 1][randomCol - 1] = SHOCKWAVEMAG5;
+				grid[randomRow - 2][randomCol - 1] = SAND;
+				grid[randomRow - 2][randomCol - 2] = SAND;
+			}
+			if(grid[randomRow][randomCol] == SHOCKWAVE && grid[randomRow][randomCol - 1] == SAND)
+			{
+				grid[randomRow][randomCol] = SHOCKWAVEMAG5;
+				grid[randomRow][randomCol - 1] = EMPTY;
+				grid[randomRow][randomCol - 1] = SHOCKWAVEMAG5;
+				grid[randomRow][randomCol - 2] = SAND;
+			}
+			if(grid[randomRow][randomCol] == SHOCKWAVE && grid[randomRow + 1][randomCol - 1] == SAND)
+			{
+				grid[randomRow][randomCol] = SHOCKWAVEMAG5;
+				grid[randomRow + 1][randomCol - 1] = EMPTY;
+				grid[randomRow + 1][randomCol - 1] = SHOCKWAVEMAG5;
+				grid[randomRow + 2][randomCol - 1] = SAND;
+				grid[randomRow + 2][randomCol - 2] = SAND;
+			}
+			if(grid[randomRow][randomCol] == SHOCKWAVE && grid[randomRow + 1][randomCol + 1] == SAND)
+			{
+				grid[randomRow][randomCol] = SHOCKWAVEMAG5;
+				grid[randomRow + 1][randomCol + 1] = EMPTY;
+				grid[randomRow + 1][randomCol + 1] = SHOCKWAVEMAG5;
+				grid[randomRow + 2][randomCol + 1] = SAND;
+				grid[randomRow + 2][randomCol + 2] = SAND;
+			}
+			if(grid[randomRow][randomCol] == SHOCKWAVE && grid[randomRow ][randomCol + 1] == SAND)
+			{
+				grid[randomRow][randomCol] = SHOCKWAVEMAG5;
+				grid[randomRow ][randomCol + 1] = EMPTY;
+				grid[randomRow ][randomCol + 1] = SHOCKWAVEMAG5;
+				grid[randomRow][randomCol + 1] = SAND;
+				
+			}
+			if(grid[randomRow][randomCol] == SHOCKWAVE && grid[randomRow - 1][randomCol + 1] == SAND)
+			{
+				grid[randomRow][randomCol] = SHOCKWAVEMAG5;
+				grid[randomRow - 1][randomCol + 1] = EMPTY;
+				grid[randomRow - 1][randomCol + 1] = SHOCKWAVEMAG5;
+				grid[randomRow - 2][randomCol + 1] = SAND;
+				grid[randomRow - 2][randomCol + 2] = SAND;
+			}
+			else
+			{
+				grid[randomRow - 1][randomCol + 1] = SHOCKWAVEMAG5;
+				grid[randomRow - 1][randomCol] = SHOCKWAVEMAG5;
+				grid[randomRow - 1][randomCol - 1] = SHOCKWAVEMAG5;
+				grid[randomRow + 1][randomCol + 1] = SHOCKWAVEMAG5;
+				grid[randomRow + 1][randomCol - 1] = SHOCKWAVEMAG5;
+				grid[randomRow ][randomCol + 1] = SHOCKWAVEMAG5;
+				grid[randomRow ][randomCol - 1] = SHOCKWAVEMAG5;
+			}
+		}
+		if (grid[randomRow][randomCol] == SHOCKWAVEMAG5)
+		{
+			if(grid[randomRow][randomCol] == SHOCKWAVEMAG5 && grid[randomRow - 1][randomCol] == SAND)
+			{
+				grid[randomRow][randomCol] = SHOCKWAVEMAG4;
+				grid[randomRow - 1][randomCol] = EMPTY;
+				grid[randomRow - 1][randomCol] = SHOCKWAVEMAG4;
+				grid[randomRow - 2][randomCol] = SAND;
+			}
+			if(grid[randomRow][randomCol] == SHOCKWAVEMAG5 && grid[randomRow - 1][randomCol - 1] == SAND)
+			{
+				grid[randomRow][randomCol] = SHOCKWAVEMAG4;
+				grid[randomRow - 1][randomCol - 1] = EMPTY;
+				grid[randomRow - 1][randomCol - 1] = SHOCKWAVEMAG4;
+				grid[randomRow - 2][randomCol - 1] = SAND;
+				grid[randomRow - 2][randomCol - 2] = SAND;
+			}
+			if(grid[randomRow][randomCol] == SHOCKWAVEMAG5 && grid[randomRow][randomCol - 1] == SAND)
+			{
+				grid[randomRow][randomCol] = SHOCKWAVEMAG4;
+				grid[randomRow][randomCol - 1] = EMPTY;
+				grid[randomRow][randomCol - 1] = SHOCKWAVEMAG4;
+				grid[randomRow][randomCol - 2] = SAND;
+			}
+			if(grid[randomRow][randomCol] == SHOCKWAVEMAG5 && grid[randomRow + 1][randomCol - 1] == SAND)
+			{
+				grid[randomRow][randomCol] = SHOCKWAVEMAG4;
+				grid[randomRow + 1][randomCol - 1] = EMPTY;
+				grid[randomRow + 1][randomCol - 1] = SHOCKWAVEMAG4;
+				grid[randomRow + 2][randomCol - 1] = SAND;
+				grid[randomRow + 2][randomCol - 2] = SAND;
+			}
+			if(grid[randomRow][randomCol] == SHOCKWAVEMAG5 && grid[randomRow + 1][randomCol + 1] == SAND)
+			{
+				grid[randomRow][randomCol] = SHOCKWAVEMAG4;
+				grid[randomRow + 1][randomCol + 1] = EMPTY;
+				grid[randomRow + 1][randomCol + 1] = SHOCKWAVEMAG4;
+				grid[randomRow + 2][randomCol + 1] = SAND;
+				grid[randomRow + 2][randomCol + 2] = SAND;
+			}
+			if(grid[randomRow][randomCol] == SHOCKWAVEMAG5 && grid[randomRow ][randomCol + 1] == SAND)
+			{
+				grid[randomRow][randomCol] = SHOCKWAVEMAG4;
+				grid[randomRow ][randomCol + 1] = EMPTY;
+				grid[randomRow ][randomCol + 1] = SHOCKWAVEMAG4;
+				grid[randomRow][randomCol + 1] = SAND;
+				
+			}
+			if(grid[randomRow][randomCol] == SHOCKWAVEMAG5 && grid[randomRow - 1][randomCol + 1] == SAND)
+			{
+				grid[randomRow][randomCol] = SHOCKWAVEMAG4;
+				grid[randomRow - 1][randomCol + 1] = EMPTY;
+				grid[randomRow - 1][randomCol + 1] = SHOCKWAVEMAG4;
+				grid[randomRow - 2][randomCol + 1] = SAND;
+				grid[randomRow - 2][randomCol + 2] = SAND;
+			}
+			else
+			{
+				grid[randomRow - 1][randomCol + 1] = SHOCKWAVEMAG4;
+				grid[randomRow - 1][randomCol] = SHOCKWAVEMAG4;
+				grid[randomRow - 1][randomCol - 1] = SHOCKWAVEMAG4;
+				grid[randomRow + 1][randomCol + 1] = SHOCKWAVEMAG4;
+				grid[randomRow + 1][randomCol - 1] = SHOCKWAVEMAG4;
+				grid[randomRow ][randomCol + 1] = SHOCKWAVEMAG4;
+				grid[randomRow ][randomCol - 1] = SHOCKWAVEMAG4;
+			}
+		}
+		if (grid[randomRow][randomCol] == SHOCKWAVEMAG4)
+		{
+			if(grid[randomRow][randomCol] == SHOCKWAVEMAG4 && grid[randomRow - 1][randomCol] == SAND)
+			{
+				grid[randomRow][randomCol] = SHOCKWAVEMAG3;
+				grid[randomRow - 1][randomCol] = EMPTY;
+				grid[randomRow - 1][randomCol] = SHOCKWAVEMAG3;
+				grid[randomRow - 2][randomCol] = SAND;
+			}
+			if(grid[randomRow][randomCol] == SHOCKWAVEMAG4 && grid[randomRow - 1][randomCol - 1] == SAND)
+			{
+				grid[randomRow][randomCol] = SHOCKWAVEMAG3;
+				grid[randomRow - 1][randomCol - 1] = EMPTY;
+				grid[randomRow - 1][randomCol - 1] = SHOCKWAVEMAG3;
+				grid[randomRow - 2][randomCol - 1] = SAND;
+				grid[randomRow - 2][randomCol - 2] = SAND;
+			}
+			if(grid[randomRow][randomCol] == SHOCKWAVEMAG4 && grid[randomRow][randomCol - 1] == SAND)
+			{
+				grid[randomRow][randomCol] = SHOCKWAVEMAG3;
+				grid[randomRow][randomCol - 1] = EMPTY;
+				grid[randomRow][randomCol - 1] = SHOCKWAVEMAG3;
+				grid[randomRow][randomCol - 2] = SAND;
+			}
+			if(grid[randomRow][randomCol] == SHOCKWAVEMAG4 && grid[randomRow + 1][randomCol - 1] == SAND)
+			{
+				grid[randomRow][randomCol] = SHOCKWAVEMAG3;
+				grid[randomRow + 1][randomCol - 1] = EMPTY;
+				grid[randomRow + 1][randomCol - 1] = SHOCKWAVEMAG3;
+				grid[randomRow + 2][randomCol - 1] = SAND;
+				grid[randomRow + 2][randomCol - 2] = SAND;
+			}
+			if(grid[randomRow][randomCol] == SHOCKWAVEMAG4 && grid[randomRow + 1][randomCol + 1] == SAND)
+			{
+				grid[randomRow][randomCol] = SHOCKWAVEMAG3;
+				grid[randomRow + 1][randomCol + 1] = EMPTY;
+				grid[randomRow + 1][randomCol + 1] = SHOCKWAVEMAG3;
+				grid[randomRow + 2][randomCol + 1] = SAND;
+				grid[randomRow + 2][randomCol + 2] = SAND;
+			}
+			if(grid[randomRow][randomCol] == SHOCKWAVEMAG4 && grid[randomRow ][randomCol + 1] == SAND)
+			{
+				grid[randomRow][randomCol] = SHOCKWAVEMAG3;
+				grid[randomRow ][randomCol + 1] = EMPTY;
+				grid[randomRow ][randomCol + 1] = SHOCKWAVEMAG3;
+				grid[randomRow][randomCol + 1] = SAND;
+				
+			}
+			if(grid[randomRow][randomCol] == SHOCKWAVEMAG4 && grid[randomRow - 1][randomCol + 1] == SAND)
+			{
+				grid[randomRow][randomCol] = SHOCKWAVEMAG3;
+				grid[randomRow - 1][randomCol + 1] = EMPTY;
+				grid[randomRow - 1][randomCol + 1] = SHOCKWAVEMAG3;
+				grid[randomRow - 2][randomCol + 1] = SAND;
+				grid[randomRow - 2][randomCol + 2] = SAND;
+			}
+			else
+			{
+				grid[randomRow - 1][randomCol + 1] = SHOCKWAVEMAG3;
+				grid[randomRow - 1][randomCol] = SHOCKWAVEMAG3;
+				grid[randomRow - 1][randomCol - 1] = SHOCKWAVEMAG3;
+				grid[randomRow + 1][randomCol + 1] = SHOCKWAVEMAG3;
+				grid[randomRow + 1][randomCol - 1] = SHOCKWAVEMAG3;
+				grid[randomRow ][randomCol + 1] = SHOCKWAVEMAG3;
+				grid[randomRow ][randomCol - 1] = SHOCKWAVEMAG3;
+			}
+		}
+		if (grid[randomRow][randomCol] == SHOCKWAVEMAG3)
+		{
+			if(grid[randomRow][randomCol] == SHOCKWAVEMAG3 && grid[randomRow - 1][randomCol] == SAND)
+			{
+				grid[randomRow][randomCol] = SHOCKWAVEMAG2;
+				grid[randomRow - 1][randomCol] = EMPTY;
+				grid[randomRow - 1][randomCol] = SHOCKWAVEMAG2;
+				grid[randomRow - 2][randomCol] = SAND;
+			}
+			if(grid[randomRow][randomCol] == SHOCKWAVEMAG3 && grid[randomRow - 1][randomCol - 1] == SAND)
+			{
+				grid[randomRow][randomCol] = SHOCKWAVEMAG2;
+				grid[randomRow - 1][randomCol - 1] = EMPTY;
+				grid[randomRow - 1][randomCol - 1] = SHOCKWAVEMAG2;
+				grid[randomRow - 2][randomCol - 1] = SAND;
+				grid[randomRow - 2][randomCol - 2] = SAND;
+			}
+			if(grid[randomRow][randomCol] == SHOCKWAVEMAG3 && grid[randomRow][randomCol - 1] == SAND)
+			{
+				grid[randomRow][randomCol] = SHOCKWAVEMAG2;
+				grid[randomRow][randomCol - 1] = EMPTY;
+				grid[randomRow][randomCol - 1] = SHOCKWAVEMAG2;
+				grid[randomRow][randomCol - 2] = SAND;
+			}
+			if(grid[randomRow][randomCol] == SHOCKWAVEMAG3 && grid[randomRow + 1][randomCol - 1] == SAND)
+			{
+				grid[randomRow][randomCol] = SHOCKWAVEMAG2;
+				grid[randomRow + 1][randomCol - 1] = EMPTY;
+				grid[randomRow + 1][randomCol - 1] = SHOCKWAVEMAG2;
+				grid[randomRow + 2][randomCol - 1] = SAND;
+				grid[randomRow + 2][randomCol - 2] = SAND;
+			}
+			if(grid[randomRow][randomCol] == SHOCKWAVEMAG3 && grid[randomRow + 1][randomCol + 1] == SAND)
+			{
+				grid[randomRow][randomCol] = SHOCKWAVEMAG2;
+				grid[randomRow + 1][randomCol + 1] = EMPTY;
+				grid[randomRow + 1][randomCol + 1] = SHOCKWAVEMAG2;
+				grid[randomRow + 2][randomCol + 1] = SAND;
+				grid[randomRow + 2][randomCol + 2] = SAND;
+			}
+			if(grid[randomRow][randomCol] == SHOCKWAVEMAG3 && grid[randomRow ][randomCol + 1] == SAND)
+			{
+				grid[randomRow][randomCol] = SHOCKWAVEMAG2;
+				grid[randomRow ][randomCol + 1] = EMPTY;
+				grid[randomRow ][randomCol + 1] = SHOCKWAVEMAG2;
+				grid[randomRow][randomCol + 1] = SAND;
+				
+			}
+			if(grid[randomRow][randomCol] == SHOCKWAVEMAG3 && grid[randomRow - 1][randomCol + 1] == SAND)
+			{
+				grid[randomRow][randomCol] = SHOCKWAVEMAG2;
+				grid[randomRow - 1][randomCol + 1] = EMPTY;
+				grid[randomRow - 1][randomCol + 1] = SHOCKWAVEMAG2;
+				grid[randomRow - 2][randomCol + 1] = SAND;
+				grid[randomRow - 2][randomCol + 2] = SAND;
+			}
+			else
+			{
+				grid[randomRow - 1][randomCol + 1] = SHOCKWAVEMAG2;
+				grid[randomRow - 1][randomCol] = SHOCKWAVEMAG2;
+				grid[randomRow - 1][randomCol - 1] = SHOCKWAVEMAG2;
+				grid[randomRow + 1][randomCol + 1] = SHOCKWAVEMAG2;
+				grid[randomRow + 1][randomCol - 1] = SHOCKWAVEMAG2;
+				grid[randomRow ][randomCol + 1] = SHOCKWAVEMAG2;
+				grid[randomRow ][randomCol - 1] = SHOCKWAVEMAG2;
+			}
+		}
+		if (grid[randomRow][randomCol] == SHOCKWAVEMAG2)
+		{
+			if(grid[randomRow][randomCol] == SHOCKWAVEMAG2 && grid[randomRow - 1][randomCol] == SAND)
+			{
+				grid[randomRow][randomCol] = SHOCKWAVEMAG1;
+				grid[randomRow - 1][randomCol] = EMPTY;
+				grid[randomRow - 1][randomCol] = SHOCKWAVEMAG1;
+				grid[randomRow - 2][randomCol] = SAND;
+			}
+			if(grid[randomRow][randomCol] == SHOCKWAVEMAG2 && grid[randomRow - 1][randomCol - 1] == SAND)
+			{
+				grid[randomRow][randomCol] = SHOCKWAVEMAG1;
+				grid[randomRow - 1][randomCol - 1] = EMPTY;
+				grid[randomRow - 1][randomCol - 1] = SHOCKWAVEMAG1;
+				grid[randomRow - 2][randomCol - 1] = SAND;
+				grid[randomRow - 2][randomCol - 2] = SAND;
+			}
+			if(grid[randomRow][randomCol] == SHOCKWAVEMAG2 && grid[randomRow][randomCol - 1] == SAND)
+			{
+				grid[randomRow][randomCol] = SHOCKWAVEMAG1;
+				grid[randomRow][randomCol - 1] = EMPTY;
+				grid[randomRow][randomCol - 1] = SHOCKWAVEMAG1;
+				grid[randomRow][randomCol - 2] = SAND;
+			}
+			if(grid[randomRow][randomCol] == SHOCKWAVEMAG2 && grid[randomRow + 1][randomCol - 1] == SAND)
+			{
+				grid[randomRow][randomCol] = SHOCKWAVEMAG1;
+				grid[randomRow + 1][randomCol - 1] = EMPTY;
+				grid[randomRow + 1][randomCol - 1] = SHOCKWAVEMAG1;
+				grid[randomRow + 2][randomCol - 1] = SAND;
+				grid[randomRow + 2][randomCol - 2] = SAND;
+			}
+			if(grid[randomRow][randomCol] == SHOCKWAVEMAG2 && grid[randomRow + 1][randomCol + 1] == SAND)
+			{
+				grid[randomRow][randomCol] = SHOCKWAVEMAG1;
+				grid[randomRow + 1][randomCol + 1] = EMPTY;
+				grid[randomRow + 1][randomCol + 1] = SHOCKWAVEMAG1;
+				grid[randomRow + 2][randomCol + 1] = SAND;
+				grid[randomRow + 2][randomCol + 2] = SAND;
+			}
+			if(grid[randomRow][randomCol] == SHOCKWAVEMAG2 && grid[randomRow ][randomCol + 1] == SAND)
+			{
+				grid[randomRow][randomCol] = SHOCKWAVEMAG1;
+				grid[randomRow ][randomCol + 1] = EMPTY;
+				grid[randomRow ][randomCol + 1] = SHOCKWAVEMAG1;
+				grid[randomRow][randomCol + 1] = SAND;
+				
+			}
+			if(grid[randomRow][randomCol] == SHOCKWAVEMAG2 && grid[randomRow - 1][randomCol + 1] == SAND)
+			{
+				grid[randomRow][randomCol] = SHOCKWAVEMAG1;
+				grid[randomRow - 1][randomCol + 1] = EMPTY;
+				grid[randomRow - 1][randomCol + 1] = SHOCKWAVEMAG1;
+				grid[randomRow - 2][randomCol + 1] = SAND;
+				grid[randomRow - 2][randomCol + 2] = SAND;
+			}
+			else
+			{
+				grid[randomRow - 1][randomCol + 1] = SHOCKWAVEMAG1;
+				grid[randomRow - 1][randomCol] = SHOCKWAVEMAG1;
+				grid[randomRow - 1][randomCol - 1] = SHOCKWAVEMAG1;
+				grid[randomRow + 1][randomCol + 1] = SHOCKWAVEMAG1;
+				grid[randomRow + 1][randomCol - 1] = SHOCKWAVEMAG1;
+				grid[randomRow ][randomCol + 1] = SHOCKWAVEMAG1;
+				grid[randomRow ][randomCol - 1] = SHOCKWAVEMAG1;
+			}
+		}
+		if (grid[randomRow][randomCol] == SHOCKWAVEMAG1)
+		{
+			if(grid[randomRow][randomCol] == SHOCKWAVEMAG1 && grid[randomRow - 1][randomCol] == SAND)
+			{
+				grid[randomRow][randomCol] = EMPTY;
+				grid[randomRow - 1][randomCol] = EMPTY;
+				grid[randomRow - 1][randomCol] = EMPTY;
+				grid[randomRow - 2][randomCol] = SAND;
+			}
+			if(grid[randomRow][randomCol] == SHOCKWAVEMAG1 && grid[randomRow - 1][randomCol - 1] == SAND)
+			{
+				grid[randomRow][randomCol] = EMPTY;
+				grid[randomRow - 1][randomCol - 1] = EMPTY;
+				grid[randomRow - 2][randomCol - 1] = SAND;
+				grid[randomRow - 2][randomCol - 2] = SAND;
+			}
+			if(grid[randomRow][randomCol] == SHOCKWAVEMAG1 && grid[randomRow][randomCol - 1] == SAND)
+			{
+				grid[randomRow][randomCol] = EMPTY;
+				grid[randomRow][randomCol - 1] = EMPTY;
+				grid[randomRow][randomCol - 1] = EMPTY;
+				grid[randomRow][randomCol - 2] = SAND;
+			}
+			if(grid[randomRow][randomCol] == SHOCKWAVEMAG1 && grid[randomRow + 1][randomCol - 1] == SAND)
+			{
+				grid[randomRow][randomCol] = EMPTY;
+				grid[randomRow + 1][randomCol - 1] = EMPTY;
+				grid[randomRow + 1][randomCol - 1] = EMPTY;
+				grid[randomRow + 2][randomCol - 1] = SAND;
+				grid[randomRow + 2][randomCol - 2] = SAND;
+			}
+			if(grid[randomRow][randomCol] == SHOCKWAVEMAG1 && grid[randomRow + 1][randomCol + 1] == SAND)
+			{
+				grid[randomRow][randomCol] = EMPTY;
+				grid[randomRow + 1][randomCol + 1] = EMPTY;
+				grid[randomRow + 1][randomCol + 1] = EMPTY;
+				grid[randomRow + 2][randomCol + 1] = SAND;
+				grid[randomRow + 2][randomCol + 2] = SAND;
+			}
+			if(grid[randomRow][randomCol] == SHOCKWAVEMAG1 && grid[randomRow ][randomCol + 1] == SAND)
+			{
+				grid[randomRow][randomCol] = EMPTY;
+				grid[randomRow ][randomCol + 1] = EMPTY;
+				grid[randomRow ][randomCol + 1] = EMPTY;
+				grid[randomRow][randomCol + 1] = SAND;
+				
+			}
+			if(grid[randomRow][randomCol] == SHOCKWAVEMAG1 && grid[randomRow - 1][randomCol + 1] == SAND)
+			{
+				grid[randomRow][randomCol] = EMPTY;
+				grid[randomRow - 1][randomCol + 1] = EMPTY;
+				grid[randomRow - 1][randomCol + 1] = EMPTY;
+				grid[randomRow - 2][randomCol + 1] = SAND;
+				grid[randomRow - 2][randomCol + 2] = SAND;
+			}
+			else
+			{
+				grid[randomRow - 1][randomCol + 1] = EMPTY;
+				grid[randomRow - 1][randomCol] = EMPTY;
+				grid[randomRow - 1][randomCol - 1] = EMPTY;
+				grid[randomRow + 1][randomCol + 1] = EMPTY;
+				grid[randomRow + 1][randomCol - 1] = EMPTY;
+				grid[randomRow ][randomCol + 1] = EMPTY;
+				grid[randomRow ][randomCol - 1] = EMPTY;
 			}
 		}
 				
